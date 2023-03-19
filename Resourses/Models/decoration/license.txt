@@ -1,0 +1,11 @@
+Model Information:
+* title:	Toy Story Trash Can
+* source:	https://sketchfab.com/3d-models/toy-story-trash-can-4224df2045444fce82f7deda5474a49c
+* author:	Kastle (https://sketchfab.com/kastle)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Toy Story Trash Can" (https://sketchfab.com/3d-models/toy-story-trash-can-4224df2045444fce82f7deda5474a49c) by Kastle (https://sketchfab.com/kastle) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)

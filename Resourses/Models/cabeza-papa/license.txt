@@ -1,0 +1,11 @@
+Model Information:
+* title:	RC Toy Story
+* source:	https://sketchfab.com/3d-models/rc-toy-story-4bd19f180b654d629ff729809cbb8a7a
+* author:	sergio (https://sketchfab.com/kikizana)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "RC Toy Story" (https://sketchfab.com/3d-models/rc-toy-story-4bd19f180b654d629ff729809cbb8a7a) by sergio (https://sketchfab.com/kikizana) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

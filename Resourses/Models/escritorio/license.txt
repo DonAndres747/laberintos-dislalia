@@ -1,0 +1,11 @@
+Model Information:
+* title:	desktop
+* source:	https://sketchfab.com/3d-models/desktop-bfae88b40f8e431aaf4c66765b8820c5
+* author:	brunogoat666 (https://sketchfab.com/brunogoat666)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "desktop" (https://sketchfab.com/3d-models/desktop-bfae88b40f8e431aaf4c66765b8820c5) by brunogoat666 (https://sketchfab.com/brunogoat666) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

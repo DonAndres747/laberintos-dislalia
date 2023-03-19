@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="//unpkg.com/aframe-physics-system@3.1.2/dist/aframe-physics-system.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+    <script src="./index.js"></script>
+    <title>Prueba Dislalia</title>
+</head>
+
+<body>
+    <!-- <audio src="./Resourses/Sounds/musica-fondo.mp3" id="mundoAudio"></audio> -->
+    <a-scene light="defaultLightsEnabled: true" inspector physics="restitution: 0;">
+        <!--Recursos-->
+
+
+
+        <a-assets>
+            <!--Texturas-->
+            <img src="./Resourses/Environment/Empezar.png" id="start">
+            <img src="./Resourses/Environment/tapiztoy.jpg" id="Pared">
+            <img src="./Resourses/Environment/piso.jpg" id="Piso">
+            <img src="./Resourses/Environment/piso2.jpg" id="Techo">
+
+
+
+            <asset-item id="woody" src="Resourses/Models/Woody/scene.gltf"></asset-item>
+            <asset-item id="bed" src="Resourses/Models/cama/scene.gltf"></asset-item>
+            <asset-item id="trash" src="Resourses/Models/decoration/scene.gltf"></asset-item>
+            <asset-item id="desktop" src="Resourses/Models/escritorio/scene.gltf"></asset-item>
+            <asset-item id="dino" src="Resourses/Models/dino/scene.gltf"></asset-item>
+            <asset-item id="dino" src="Resourses/Models/dino/scene.gltf"></asset-item>
+            <asset-item id="child" src="Resourses/Models/child/scene.gltf"></asset-item>
+            <asset-item id="toybox" src="Resourses/Models/toy box/scene.gltf"></asset-item>
+
+            <asset-item id="dog" src="Resourses/Models/dog/scene.gltf"></asset-item>
+            <asset-item id="dog-m" src="Resourses/Models/dog-m/scene.gltf"></asset-item>
+            <asset-item id="alien" src="Resourses/Models/alien/scene.gltf"></asset-item>
+            <asset-item id="jessie" src="Resourses/Models/jessie/scene.gltf"></asset-item>
+            <asset-item id="head" src="Resourses/Models/potato/scene.gltf"></asset-item>
+            <asset-item id="carrito" src="Resourses/Models/cabeza-papa/scene.gltf"></asset-item>
+            <asset-item id="penguin" src="Resourses/Models/Pinguino/scene.gltf"></asset-item>
+            <asset-item id="buzz" src="Resourses/Models/buzz/scene.gltf"></asset-item>
+
+
+            <!-- <asset-item id="laberinto" src ="Resourses/laberinto/laberinto 1.gltf"></asset-item> -->
+
+
+        </a-assets>
+
+        <!--Audios-->
+        <audio id="A1" src="./Resourses/Sounds/trabajar.ogg"></audio>
+        <audio id="A2" src="./Resourses/Sounds/amistad.ogg"></audio>
+        <audio id="A3" src="./Resourses/Sounds/Cobija.ogg"></audio>
+        <audio id="A4" src="./Resourses/Sounds/plato.ogg"></audio>
+        <audio id="A5" src="./Resourses/Sounds/Barril.ogg"></audio>
+        <audio id="A6" src="./Resourses/Sounds/palabra.ogg"></audio>
+
+        <!--Models-->
+        <a-entity gltf-model="#woody" scale="1.9 1.9 1.9" position="-3 0 -22" onclick="fraseWoody()"
+            static-body></a-entity>
+        <a-entity gltf-model="#bed" scale="2.5 2.5 2.5" rotation="0 0 0" position="-10 0 -17.5" static-body></a-entity>
+        <a-entity gltf-model="#trash" scale="0.06 0.06 0.06" rotation="0 90 0" position="-13 0.5 -19"
+            static-body></a-entity>
+        <a-entity gltf-model="#desktop" scale="0.6 0.6 0.6" rotation="0 270 0" position="-18 0 -17"></a-entity>
+        <a-entity gltf-model="#dino" scale="0.1 0.1 0.1" rotation="0 -50 0" position="-11 2 -17" static-body></a-entity>
+
+        <a-entity gltf-model="#buzz" scale="0.1 0.1 0.1" rotation="0 220 0" position="-17.5 0 -35.5"
+            static-body></a-entity>
+        <a-entity gltf-model="#child" scale="0.0026 0.0026 0.0026" rotation="0 90 0" position="-17 0 -54"
+            static-body></a-entity>
+        <a-entity gltf-model="#toybox" scale="0.04 0.032 0.042" rotation="0 180 0" position="-1.5 0 -54.5"></a-entity>
+        <a-entity gltf-model="#dog-m" scale="0.14 0.14 0.14" rotation="0 60 0" position="-28.5 0 -3"
+            static-body></a-entity>
+        <a-entity gltf-model="#alien" scale="0.4 0.4 0.4" rotation="0 270 0" position="-15.5 1 -3"
+            static-body></a-entity>
+
+        <a-entity gltf-model="#jessie" scale="1.4 1.4 1.4" rotation="0 60 0" position="-28.9 0 -38"
+            static-body></a-entity>
+        <a-entity gltf-model="#head" scale="0.05 0.05 0.05" rotation="0 -120 0" position=" 0 0.1 -28.4"
+            static-body></a-entity>
+        <a-entity gltf-model="#carrito" scale="0.8 0.8 0.8" rotation="0 0 0" position=" 12.4 0.2 -23"
+            static-body></a-entity>
+        <a-entity gltf-model="#penguin" scale="0.07 0.07 0.07" rotation="0 0 0" position=" 12.2 0 -38"
+            static-body></a-entity>
+
+        <!-- <a-entity gltf-model = "#laberinto" scale = "3 3 3" rotation ="0 0 0" position = " 0 0 0" static-body></a-entity> -->
+
+
+
+
+
+        <!-- <a-box src="#Puerta" sound="src: #opendoor; on: click;" width="1.6" height="5.5" depth="0.5"
+            position="-6 2.5 -13.7" animation="property: rotation; startEvents:click; to: 0 90 0; dur: 3000"
+            animation__2="property: position; startEvents:click; to: -7.2 2.5 -14.6; dur: 200" static-body></a-box> -->
+
+        <!--Menu-->
+        <a-box src="#Pared" width="8" height="7" depth="1" position="0 1.5 81" static-body></a-box>
+        <a-box src="#Pared" width="8" height="7" depth="1" position="0 1.5 72" static-body></a-box>
+        <a-box src="#Pared" rotation="0 90 0" width="8" height="7" depth="1" position="4.5 1.5 76.5"
+            static-body></a-box>
+        <a-box src="#Pared" rotation="0 90 0" width="8" height="7" depth="1" position="-4.5 1.5 76.5"
+            static-body></a-box>
+        <a-plane onclick="empezar()" position="0.2 2.3 74" src="#start" depth="0.1" width="4.5" height="2.5"></a-plane>
+
+        <!--Piso y techo-->
+        <a-box src="#Techo" material="repeat: 20 70;color:#fafafa;metalness:0.2;roughness:0.1;" height="1" width="100"
+            depth="200" position="0 6 0"></a-box>
+        <a-box src="#Piso" rotation="0 90 0" material="repeat: 200 200;color:#fafafa;metalness:0.2;roughness:0.1;"
+            color="grey" height="1" width="400" depth="400" static-body position="0 -0.5 0"></a-box>
+        <a-entity id="luz" light="type: ambient; color: #white; intensity: 1"></a-entity>
+
+        <!--Paredes inicio-->
+
+        <a-box src="#Pared" width="21" height="7.5" depth="0.2" rotation="0 90 0" position="2 1.5 -7.5"
+            static-body></a-box>
+        <a-box src="#Pared" width="12" height="7.5" depth="0.2" rotation="0 90 0" position="-5 1.5 -3"
+            static-body></a-box>
+
+
+        <!--Paredes_Izquierda HORIZONTALES-->
+        <a-box src="#Pared" width="17.6" height="7.5" depth="0.2" rotation="0 0 0" position="-13.9 1.5 -8.9"
+            static-body></a-box>
+        <a-box src="#Pared" width="9" height="7.5" depth="0.2" rotation="0 0 0" position="-15.9 1.5 -5"
+            static-body></a-box>
+        <a-box src="#Pared" width="9" height="7.5" depth="0.2" rotation="0 0 0" position="-12.9 1.5 -1"
+            static-body></a-box>
+        <a-box src="#Pared" width="12" height="7.5" depth="0.2" rotation="0 0 0" position="-11 1.5 -13.7"
+            static-body></a-box>
+        <a-box src="#Pared" width="36" height="7.5" depth="0.2" rotation="0 0 0" position="-13.9 1.5 3"
+            static-body></a-box>
+
+        <a-box src="#Pared" width="6" height="7.5" depth="0.2" rotation="0 0 0" position="-29 1.5 -5"
+            static-body></a-box>
+        <a-box src="#Pared" width="8" height="7.5" depth="0.2" rotation="0 0 0" position="-29 1.5 -40.5"
+            static-body></a-box>
+
+        <a-box src="#Pared" width="3" height="7.5" depth="0.2" rotation="0 0 0" position="-21.4 1.5 -1"
+            static-body></a-box>
+
+        <a-box src="#Pared" width="4" height="7.5" depth="0.2" rotation="0 0 0" position="-30 1.5 -20"
+            static-body></a-box>
+        <a-box src="#Pared" width="4" height="7.5" depth="0.2" rotation="0 0 0" position="-30 1.5 -36"
+            static-body></a-box>
+
+        <a-box src="#Pared" width="6" height="7.5" depth="0.2" rotation="0 0 0" position="-22 1.5 -13.6"
+            static-body></a-box>
+        <a-box src="#Pared" width="10" height="7.5" depth="0.2" rotation="0 0 0" position="-20 1.5 -31.5"
+            static-body></a-box>
+        <a-box src="#Pared" width="5" height="7.5" depth="0.6" rotation="0 0 0" position="-22.5 1.5 -27"
+            static-body></a-box>
+        <a-box src="#Pared" width="16" height="7.5" depth="0.2" rotation="0 0 0" position="-13 1.5 -20.2"
+            static-body></a-box>
+        <a-box src="#Pared" width="5" height="7.5" depth="0.2" rotation="0 0 0" position="-12.5 1.5 -25.4"
+            static-body></a-box>
+        <a-box src="#Pared" width="5" height="7.5" depth="0.2" rotation="0 0 0" position="-12.6 1.5 -40.85"
+            static-body></a-box>
+        <a-box src="#Pared" width="10" height="7.5" depth="0.2" rotation="0 0 0" position="-4.9 1.5 -36.4"
+            static-body></a-box>
+        <a-box src="#Pared" width="13" height="7.5" depth="0.2" rotation="0 0 0" position="-1 1.5 -40.85"
+            static-body></a-box>
+        <a-box src="#Pared" width="10" height="7.5" depth="0.2" rotation="0 0 0" position="10.5w 1.5 -52.85"
+            static-body></a-box>
+        <a-box src="#Pared" width="5" height="7.5" depth="0.2" rotation="0 0 0" position="12.5 1.5 -47.95"
+            static-body></a-box>
+        <a-box src="#Pared" width="5" height="7.5" depth="0.2" rotation="0 0 0" position="7.5 1.5 -35.95"
+            static-body></a-box>
+        <a-box src="#Pared" width="5" height="7.5" depth="0.2" rotation="0 0 0" position="2.5 1.5 -31.65"
+            static-body></a-box>
+        <a-box src="#Pared" width="5" height="7.5" depth="0.2" rotation="0 0 0" position="12.5 1.5 -29"
+            static-body></a-box>
+        <a-box src="#Pared" width="10" height="7.5" depth="0.2" rotation="0 0 0" position="0 1.5 -25.65"
+            static-body></a-box>
+        <a-box src="#Pared" width="13" height="7.5" depth="0.2" rotation="0 0 0" position="8.5 1.5 -18"
+            static-body></a-box>
+        <a-box src="#Pared" width="40" height="7.5" depth="0.2" rotation="0 0 0" position="-0 1.5 -58"
+            static-body></a-box>
+        <a-box src="#Pared" width="10" height="7.5" depth="0.2" rotation="0 0 0" position="-15 1.5 -50"
+            static-body></a-box>
+        <a-box src="#Pared" width="10" height="7.5" depth="0.2" rotation="0 0 0" position="-3 1.5 -50"
+            static-body></a-box>
+        <a-box src="#Pared" width="6" height="7.5" depth="0.2" rotation="0 0 0" position="-23.1 1.5 -40.1"
+            static-body></a-box>
+
+
+
+
+
+        <!--VERTICALES-->
+        <a-box src="#Pared" width="6" height="7.5" depth="0.2" rotation="0 90 0" position="-8.5 1.5 -5.8"
+            static-body></a-box>
+        <a-box src="#Pared" width="4" height="7.5" depth="0.2" rotation="0 90 0" position="-11.4 1.5 -3"
+            static-body></a-box>
+        <a-box src="#Pared" width="45" height="7.5" depth="0.2" rotation="0 90 0" position="-32 1.5 -18"
+            static-body></a-box>\
+        <a-box src="#Pared" width="40" height="7.5" depth="0.2" rotation="0 90 0" position="15 1.5 -38"
+            static-body></a-box>
+
+
+        <a-box src="#Pared" width="4" height="7.5" depth="0.2" rotation="0 90 0" position="-23 1.5 -3"
+            static-body></a-box>
+        <a-box src="#Pared" width="4" height="7.5" depth="0.2" rotation="0 90 0" position="-20 1.5 1"
+            static-body></a-box>
+        <a-box src="#Pared" width="4" height="7.5" depth="0.2" rotation="0 90 0" position="-26 1.5 -3"
+            static-body></a-box>
+        <a-box src="#Pared" width="4" height="7.5" depth="0.2" rotation="0 90 0" position="-28 1.5 1"
+            static-body></a-box>
+
+        <a-box src="#Pared" width="11" height="7.5" depth="0.2" rotation="0 90 0" position="-28 1.5 -14.5"
+            static-body></a-box>
+        <a-box src="#Pared" width="11" height="7.5" depth="0.2" rotation="0 90 0" position="-28 1.5 -30.5"
+            static-body></a-box>
+
+        <a-box src="#Pared" width="11" height="7.5" depth="0.2" rotation="0 90 0" position="-25 1.5 -14.5"
+            static-body></a-box>
+        <a-box src="#Pared" width="9" height="7.5" depth="0.2" rotation="0 90 0" position="-25 1.5 -36"
+            static-body></a-box>
+
+        <a-box src="#Pared" width="6.5" height="7.5" depth="0.2" rotation="0 90 0" position="-21 1.5 -17"
+            static-body></a-box>
+        <a-box src="#Pared" width="18" height="7.5" depth="0.2" rotation="0 90 0" position="-5 1.5 -22.7"
+            static-body></a-box>
+        <a-box src="#Pared" width="15.5" height="7.5" depth="0.2" rotation="0 90 0" position="-15 1.5 -33"
+            static-body></a-box>
+
+        <a-box src="#Pared" width="4" height="7.5" depth="0.6" rotation="0 90 0" position="-17.5 1.5 -22.2"
+            static-body></a-box>
+        <a-box src="#Pared" width="5" height="7.5" depth="0.2" rotation="0 90 0" position="-10 1.5 -34"
+            static-body></a-box>
+
+        <a-box src="#Pared" width="4.3" height="7.5" depth="0.2" rotation="0 90 0" position="0 1.5 -38.65"
+            static-body></a-box>
+        <a-box src="#Pared" width="12" height="7.5" depth="0.2" rotation="0 90 0" position="5.4 1.5 -46.95"
+            static-body></a-box>
+        <a-box src="#Pared" width="12" height="7.5" depth="0.2" rotation="0 90 0" position="10 1.5 -41.95"
+            static-body></a-box>
+
+
+        <a-box src="#Pared" width="10.2" height="7.5" depth="0.2" rotation="0 90 0" position="5 1.5 -30.75"
+            static-body></a-box>
+        <a-box src="#Pared" width="9" height="7.5" depth="0.2" rotation="0 90 0" position="10 1.5 -22.5"
+            static-body></a-box>
+
+        <a-box src="#Pared" width="8" height="7.5" depth="0.2" rotation="0 90 0" position="1.9 1.5 -54"
+            static-body></a-box>
+        <a-box src="#Pared" width="20" height="7.5" depth="0.2" rotation="0 90 0" position="-20 1.5 -50"
+            static-body></a-box>
+
+
+        <!--Opciones-->
+        <a-box id="muro" width="6" height="2" depth="0.1" rotation ="0 90 0" visible="false"  position="-8.4 1.5 -11" static-body></a-box>
+
+        <a-box id="muro2" width="6" height="2" depth="0.1" rotation="0 0 0" visible="false" position="-1.5 1.5 -15.5" static-body></a-box>
+
+        <a-box id="codijaOpc" onclick="mal('cobija','codija','1')" position="-15 1.5 -10.5" rotation="0 90 0"
+            src="Resourses/Environment/Codija.png" depth="0.1" visible="false"></a-box>
+        <a-box id="muro1" width="6" height="2" depth="0.1" rotation="0 90 0" visible="false" position="-15.5 1.5 -11"
+            static-body></a-box>
+        <a-box id="cobijaOpc" onclick="bien('cobija','codija','1')" position="-15 1.5 -12" rotation="0 90 0"
+            src="Resourses/Environment/Cobija (1).png" depth="0.1" visible="false"></a-box>
+
+        <a-box id="plaltoOpc" onclick="mal('plato','plalto','3')" position="4 1.5 -20.5" rotation="0 90 0"
+            src="Resourses/Environment/Plalto.png" depth="0.1" visible="false"></a-box>
+        <a-box id="muro3" width="6" height="2" depth="0.1" rotation="0 90 0" visible="false" position="4.5 1.5 -20.5"
+            static-body></a-box>
+        <a-box id="platoOpc" onclick="bien('plato','plalto','3')" position="4 1.5 -23" rotation="0 90 0"
+            src="Resourses/Environment/Plato.png" depth="0.1" visible="false"></a-box>
+
+        <a-box id="barilOpc" onclick="mal('barril','baril','4')" position="6.5 1.5 -26" rotation="0 0 0"
+            src="Resourses/Environment/Baril.png" depth="0.1" visible="false"></a-box>
+        <a-box id="muro4" width="6" height="2" depth="0.1" rotation="0 0 0" visible="false" position="7.5 1.5 -26.5"
+            static-body></a-box>
+        <a-box id="barrilOpc" onclick="bien('barril','baril','4')" position="8 1.5 -26" rotation="0 0 0"
+            src="Resourses/Environment/Barril.png" depth="0.1" visible="false"></a-box>
+
+        <a-box id="palabraOpc" onclick="bien('palabra','palabla','5')" position="-24 1.5 -12" rotation="0 90 0"
+            src="Resourses/Environment/Palabra.png" depth="0.1" visible="false"></a-box>
+        <a-box id="muro5" width="6" height="2" depth="0.1" rotation="0 0 0" visible="false" position="-23 1.5 -9"
+            static-body></a-box>
+        <a-box id="palablaOpc" onclick="mal('palabra','palabla','5')" position="-24 1.5 -10.5" rotation="0 90 0"
+            src="Resourses/Environment/Palabla.png" depth="0.1" visible="false"></a-box>
+
+
+
+        <!--Triggers-->
+
+        <a-box id="trigger" audio="A1" opc1="trabajar" opc2="tradajar" static-body width="4.5" height="0.1"
+            rotation="0 90 0" visible="false" position="-6 0 -11.5"></a-box>
+        <a-box id="triggerOpcAdd" static-body width="4.5" height="0.1" rotation="0 90 0" visible="false"
+            position="-6 0 -11.5" 
+            opc1="trabajar" opc2="tradajar" 
+            post="-8 1.5 -10.5" 
+            rt="0 90 0"
+            src1="Resourses/Environment/Trabajar.png" 
+            depth1="0.1" 
+            nMuro='' 
+            respTyp='bien'></a-box>
+        <a-box id="triggerOpcAdd" static-body width="4.5" height="0.1" rotation="0 90 0" visible="false"
+            position="-6 0 -11.5" 
+            opc1="trabajar" opc2="tradajar" 
+            post="-8 1.5 -12" 
+            rt="0 90 0"
+            src1="Resourses/Environment/Tradajar.png" 
+            depth1="0.1" 
+            nMuro='' 
+            respTyp='mal'></a-box>
+
+        <a-box id="trigger" audio="A2" opc1="amistad" opc2="amitad" static-body width="7" height="0.1" rotation="0 0 0"
+            visible="false" position="-1.5 0 -13"></a-box>
+        <a-box id="triggerOpcAdd" static-body width="7" height="0.1" rotation="0 0 0" visible="false" position="-1.5 0 -13"
+            opc1="amistad" opc2="amitad" 
+            post="-0.1 1.5 -15" 
+            rt="0 0 0"
+            src1="Resourses/Environment/amistad.png" 
+            depth1="0.1" 
+            nMuro='2' 
+            respTyp='bien'></a-box>
+        <a-box id="triggerOpcAdd" static-body width="7" height="0.1" rotation="0 0 0" visible="false" position="-1.5 0 -13"
+            opc1="amistad" opc2="amitad" 
+            post="-2 1.5 -15"
+            rt="0 0 0"
+            src1="Resourses/Environment/amitad.png" 
+            depth1="0.1" 
+            nMuro='2' 
+            respTyp='mal'></a-box>
+            
+        <a-box id="trigger" audio="A3" opc1="cobija" opc2="codija" static-body width="3.5" height="0.1"
+            rotation="0 90 0" visible="false" position="-13 0 -11.5"></a-box>
+        <a-box id="trigger" audio="A4" opc1="plato" opc2="plalto" static-body width="7" height="0.1" rotation="0 90 0"
+            visible="false" position="2.8 0 -22"></a-box>
+        <a-box id="trigger" audio="A5" opc1="barril" opc2="baril" static-body width="4.5" height="0.1" rotation="0 0 0"
+            visible="false" position="7.5 0 -25"></a-box>
+        <a-box id="trigger" audio="A6" opc1="palabra" opc2="palabla" static-body width="4.5" height="0.1"
+            rotation="0 90 0" visible="false" position="-22 0 -11.5"></a-box>
+
+        <!--frases-->
+        <a-plane id="fw" position="0.7 2 -22" src="./Resourses/Environment/frases/fwoody.png" visible="false"
+            depth="0.1" width="4.5" height="2.5" material="transparent: true"></a-plane>
+
+
+
+        <!--puntuacion-->
+
+
+
+        <!--Jugador-->
+        <a-entity id="player" position="0 0 80" collider movement-controls kinematic-body="radius:0.5">
+            <a-entity camera look-controls="pointerLockEnabled: true;" position="0 2 0">
+                <a-entity cursor position="0 0 -0.5" geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.016"
+                    material="opacity:0.5;shader:flat;transparent:true;color:#ff9" scale="0.8 0.8 0.8" raycaster>
+                </a-entity>
+    </a-scene>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Dino Rex #3DSM2
+* source:	https://sketchfab.com/3d-models/dino-rex-3dsm2-3d8e41cbaa034102ac0f23fb1da0361c
+* author:	JuanG3D (https://sketchfab.com/juang3d)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Dino Rex #3DSM2" (https://sketchfab.com/3d-models/dino-rex-3dsm2-3d8e41cbaa034102ac0f23fb1da0361c) by JuanG3D (https://sketchfab.com/juang3d) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

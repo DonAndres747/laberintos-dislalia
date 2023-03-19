@@ -1,0 +1,11 @@
+Model Information:
+* title:	Wii - Toy Story 3 - Slinky Dog
+* source:	https://sketchfab.com/3d-models/wii-toy-story-3-slinky-dog-f9b7a22aa2e44f01ab932e9548ab98f4
+* author:	23200 (https://sketchfab.com/23200)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Wii - Toy Story 3 - Slinky Dog" (https://sketchfab.com/3d-models/wii-toy-story-3-slinky-dog-f9b7a22aa2e44f01ab932e9548ab98f4) by 23200 (https://sketchfab.com/23200) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

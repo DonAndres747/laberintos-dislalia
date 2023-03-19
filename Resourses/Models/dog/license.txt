@@ -1,0 +1,11 @@
+Model Information:
+* title:	Dog Dachshund -Tacskó
+* source:	https://sketchfab.com/3d-models/dog-dachshund-tacsko-046f4d21810e4bf68feabe393a6b83cf
+* author:	PAndras (https://sketchfab.com/PusztaiAndras)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Dog Dachshund -Tacskó" (https://sketchfab.com/3d-models/dog-dachshund-tacsko-046f4d21810e4bf68feabe393a6b83cf) by PAndras (https://sketchfab.com/PusztaiAndras) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
