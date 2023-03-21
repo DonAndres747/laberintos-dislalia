@@ -19,23 +19,26 @@ AFRAME.registerComponent('collider', {
          const trgAudio = trg.getAttribute('audio');
          const trgOpc1 = trg.getAttribute('opc1');
          const trgOpc2 = trg.getAttribute('opc2');
-         const position = trg.getAttribute('post');
+         const post1 = trg.getAttribute('post1');
+         const post2 = trg.getAttribute('post2');
          const rotation = trg.getAttribute('rt');
-         const src = trg.getAttribute('src1');
+         const src1 = trg.getAttribute('src1');
+         const src2 = trg.getAttribute('src2');
          const depth = trg.getAttribute('depth1');
          const nMuro = trg.getAttribute('nMuro');
-         const respTyp = trg.getAttribute('respTyp');
+         const rspTyp1 = trg.getAttribute('rspTyp1');
+         const rspTyp2 = trg.getAttribute('rspTyp2');
 
-         console.log("post1 " + position)
-
+            
          const triggerArgs = {
-            'trigger': [trgAudio],
-            'triggerOpcAdd': [trgOpc1, trgOpc2, position, rotation, src, depth, nMuro, respTyp]
+            'trigger': [trgAudio, trgOpc1, trgOpc2, post1, post2, rotation, src1, src2, depth, nMuro, rspTyp1, rspTyp2]
          };
          const triggers = {
 
-            'trigger': (trgAudio) => {
+            'trigger': (trgAudio, trgOpc1, trgOpc2, post1, post2, rotation, src1, src2, depth, nMuro, rspTyp1, rspTyp2) => {
 
+               newOpci(trgOpc1, trgOpc2, post1, rotation, src1, depth, nMuro, rspTyp1)
+               newOpci(trgOpc1, trgOpc2, post2, rotation, src2, depth, nMuro, rspTyp2)
                console.log(trgAudio)
                let audio = document.querySelector("#" + trgAudio);
                audio.play();
@@ -43,12 +46,6 @@ AFRAME.registerComponent('collider', {
                
                // newOpci(trgOpc1, trgOpc2, position1, rotation, src1, depth, nMuro, 'bien');
                // newOpci(trgOpc1, trgOpc2, position2, rotation, src2, depth, nMuro, 'mal')
-
-            },
-            'triggerOpcAdd': (trgOpc1, trgOpc2, position, rotation, src, depth, nMuro, respTyp) => {
-
-               newOpci(trgOpc1, trgOpc2, position, rotation, src, depth, nMuro, respTyp)
-               e.detail.body.el.parentNode.removeChild(e.detail.body.el);
 
             }
 
@@ -77,7 +74,7 @@ function bien(opcion1, opcion2, nMuro, sceneEl) {
    let opcBad = document.querySelector("#" + opcion2 + "Opc")
    opcBad.parentNode.removeChild(opcBad);
    contador += 10;
-   console.log(contador)
+   console.log(contador)   
    // document.querySelector("#puntuacion") = contador;
 }
 
@@ -87,7 +84,6 @@ function mal(opcion1, opcion2, nMuro, sceneEl) {
 
    console.log('opcion1', opcion1)
    let opcCorrect = sceneEl.querySelector("#" + opcion1 + "Opc");
-   console.log('opcCorrect', opcCorrect)
    opcCorrect.parentNode.removeChild(opcCorrect);
 
    let opcBad = document.querySelector("#" + opcion2 + "Opc")
@@ -102,20 +98,18 @@ function fraseWoody() {
    }, 5000);
 }
 
-function newOpci(trgOpc1, trgOpc2, position, rotation, src, depth, nMuro, respTyp) {
+function newOpci(trgOpc1, trgOpc2, position, rotation, src, depth, nMuro, rspTyp) {
    const nuevoBox = document.createElement('a-box');
    const sceneEl = document.querySelector('a-scene');
 
-   nuevoBox.setAttribute('id', (respTyp == 'bien' ? trgOpc1 : trgOpc2) + "Opc");
+   nuevoBox.setAttribute('id', (rspTyp == 'bien' ? trgOpc1 : trgOpc2) + "Opc");
    nuevoBox.setAttribute('visible', 'true');
    nuevoBox.setAttribute('position', position);
    nuevoBox.setAttribute('rotation', rotation);
    nuevoBox.setAttribute('src', src);
    nuevoBox.setAttribute('depth', depth);
    nuevoBox.onclick = () => {
-      respTyp == 'bien' ? bien(trgOpc1, trgOpc2, nMuro, sceneEl) : mal(trgOpc1, trgOpc2, nMuro, sceneEl)
+      rspTyp == 'bien' ? bien(trgOpc1, trgOpc2, nMuro, sceneEl) : mal(trgOpc1, trgOpc2, nMuro, sceneEl)
    };
-   console.log('id', nuevoBox.getAttribute('id'))
-   console.log('respTyp', respTyp)
    sceneEl.appendChild(nuevoBox);
 }
