@@ -27,17 +27,26 @@ AFRAME.registerComponent('collider', {
          const nMuro = trg.getAttribute('nMuro');
          const rspTyp1 = trg.getAttribute('rspTyp1');
          const rspTyp2 = trg.getAttribute('rspTyp2');
+         
+         //Wall 
+         const postW = trg.getAttribute('postW');
+         const rotationW = trg.getAttribute('rtW');
+         const depthW = trg.getAttribute('depthW');
+         const widthW = trg.getAttribute('widthW');
+         const heightW = trg.getAttribute('heightW');
+         
 
             
          const triggerArgs = {
-            'trigger': [trgAudio, trgOpc1, trgOpc2, post1, post2, rotation, src1, src2, depth, nMuro, rspTyp1, rspTyp2]
+            'trigger': [trgAudio, trgOpc1, trgOpc2, post1, post2, postW, rotation, rotationW, src1, src2, depth, depthW, nMuro, rspTyp1, rspTyp2, widthW, heightW]
          };
          const triggers = {
 
-            'trigger': (trgAudio, trgOpc1, trgOpc2, post1, post2, rotation, src1, src2, depth, nMuro, rspTyp1, rspTyp2) => {
+            'trigger': (trgAudio, trgOpc1, trgOpc2, post1, post2, postW, rotation, rotationW, src1, src2, depth, depthW, nMuro, rspTyp1, rspTyp2, widthW, heightW) => {
 
                newOpci(trgOpc1, trgOpc2, post1, rotation, src1, depth, nMuro, rspTyp1)
                newOpci(trgOpc1, trgOpc2, post2, rotation, src2, depth, nMuro, rspTyp2)
+               newWall(nMuro, postW, (rotationW==null?rotation:rotationW), depthW, widthW, heightW);
                console.log(trgAudio)
                let audio = document.querySelector("#" + trgAudio);
                audio.play();
@@ -110,5 +119,21 @@ function newOpci(trgOpc1, trgOpc2, position, rotation, src, depth, nMuro, rspTyp
    nuevoBox.onclick = () => {
       rspTyp == 'bien' ? bien(trgOpc1, trgOpc2, nMuro, sceneEl) : mal(trgOpc1, trgOpc2, nMuro, sceneEl)
    };
+   sceneEl.appendChild(nuevoBox);
+}
+
+function newWall(nMuro, position, rotation, depth, width, height){
+   const nuevoBox = document.createElement('a-box');
+   const sceneEl = document.querySelector('a-scene');
+
+   nuevoBox.setAttribute('id', "muro" + nMuro);
+   nuevoBox.setAttribute('visible', 'true');
+   nuevoBox.setAttribute('position', position);
+   nuevoBox.setAttribute('rotation', rotation);
+   nuevoBox.setAttribute('depth', (depth==null?'0.1':depth));
+   nuevoBox.setAttribute('width', (width==null?'6':width))
+   nuevoBox.setAttribute('height', (height==null?'2':height))
+   // nuevoBox.setAttribute('static-body', '')
+
    sceneEl.appendChild(nuevoBox);
 }
