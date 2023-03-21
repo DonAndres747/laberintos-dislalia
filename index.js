@@ -1,15 +1,14 @@
-//Movimiento
-AFRAME.registerComponent('static-movement', {
-   schema: { default: '' },
-   init: function () {
-      var el = this.el;
-      el.addEventListener('click', function () {
-         document.querySelector('#player').setAttribute('position', el.getAttribute('position'));
-         console.log("Click: Player moved");
-      });
-   }
-});
+// AFRAME.registerComponent('wasd-movement', {
+//    init: function () {
+//      this.el.addEventListener('componentchanged', function (evt) {
+//        if (evt.detail.name === 'position') {
+//          console.log("Position: ", this.getAttribute('position'));
+//        }
+//      });
+//    }
+//  });
 
+ 
 AFRAME.registerComponent('collider', {
    init: function () {
       this.el.addEventListener('collide', function (e) {

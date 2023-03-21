@@ -262,22 +262,12 @@
 
         <a-box id="muro1" width="6" height="2" depth="0.1" rotation="0 0 0" visible="false" position="-23 1.5 -9" static-body></a-box>
             
-        <a-box id="muro3" width="6" height="2" depth="0.1" rotation="0 90 0" visible="false" position="4.5 1.5 -20.5"   static-body></a-box>
+        <a-box id="muro3" width="6" height="2" depth="0.1" rotation="0 0 0" visible="false" position="7.5 1.5 -26.5"   static-body></a-box>
 
+        <a-box id="muro4" width="6" height="2" depth="0.1" rotation="0 0 0" visible="false" position="-10 1.5 -5.17" static-body></a-box>
+                
+        <a-box id="muro5" width="4" height="2" depth="0.01" rotation="0 90 0" visible="false" position="-10.8 1.5 1" static-body></a-box>
 
-        <!-- <a-box id="barilOpc" onclick="mal('barril','baril','4')" position="6.5 1.5 -26" rotation="0 0 0"
-            src="Resourses/Environment/Baril.png" depth="0.1" visible="false"></a-box>
-        <a-box id="muro4" width="6" height="2" depth="0.1" rotation="0 0 0" visible="false" position="7.5 1.5 -26.5"
-            static-body></a-box>
-        <a-box id="barrilOpc" onclick="bien('barril','baril','4')" position="8 1.5 -26" rotation="0 0 0"
-            src="Resourses/Environment/Barril.png" depth="0.1" visible="false"></a-box> -->
-
-        <!-- <a-box id="palabraOpc" onclick="bien('palabra','palabla','5')" position="-24 1.5 -12" rotation="0 90 0"
-            src="Resourses/Environment/Palabra.png" depth="0.1" visible="false"></a-box>
-        <a-box id="muro5" width="6" height="2" depth="0.1" rotation="0 0 0" visible="false" position="-23 1.5 -9"
-            static-body></a-box>
-        <a-box id="palablaOpc" onclick="mal('palabra','palabla','5')" position="-24 1.5 -10.5" rotation="0 90 0"
-            src="Resourses/Environment/Palabla.png" depth="0.1" visible="false"></a-box> -->
 
 
 
@@ -323,23 +313,44 @@
             rspTyp1= 'mal'
             rspTyp2 = 'bien'></a-box> 
 
-        <a-box id="trigger"  static-body width="7" height="0.1" rotation="0 90 0" visible="false" position="2.8 0 -22"
+        <a-box id="trigger"  static-body width="7" height="0.1" rotation="0 0 0" visible="false" position="7.5 0 -25"
             audio="A4" 
             opc1="plato" opc2="plalto"
-            post1="4 1.5 -20.5" 
-            post2="4 1.5 -23"
-            rt="0 90 0"
+            post1="6.5 1.5 -26" 
+            post2="8 1.5 -26"
+            rt="0 0 0"
             src1="Resourses/Environment/Plalto.png"
             src2="Resourses/Environment/Plato.png"
             depth1="0.1" 
             nMuro='3'
             rspTyp1= 'mal'
-            rspTyp2 = 'bien'></a-box> 
+            rspTyp2= 'bien'></a-box> 
         
-        <a-box id="trigger" audio="A5" opc1="barril" opc2="baril" static-body width="4.5" height="0.1" rotation="0 0 0" visible="true" position="7.5 0 -25"></a-box>
-       
-        <!-- <a-box id="trigger" audio="A6" opc1="palabra" opc2="palabla" static-body width="4.5" height="0.1"
-            rotation="0 90 0" visible="false" position="-22 0 -11.5"></a-box> -->
+        <a-box id="trigger" static-body width="4" height="0.1" rotation="0 90 0" visible="false" position="-13 0 -6.8"
+            audio="A5" 
+            opc1="barril" opc2="baril"
+            post1="-10 1.5 -6.3" 
+            post2="-10 1.5 -7.7"
+            rt="0 90 0"
+            src1="Resourses/Environment/Baril.png"
+            src2="Resourses/Environment/Barril.png"
+            depth1="0.1"    
+            nMuro='4'
+            rspTyp1= 'mal'
+            rspTyp2= 'bien'></a-box>
+         
+        <a-box id="trigger"  static-body width="4" height="0.1"  depth='5' rotation="0 90 0" visible="false" position="-10.8 0 1"
+            audio="A6" 
+            opc1="palabra" opc2="palabla"
+            post1="-10.8 1.5 1.8"
+            post2="-10.8 1.5 0.2"
+            rt="0 90 0"
+            src1="Resourses/Environment/Palabra.png"
+            src2="Resourses/Environment/Palabla.png"
+            depth1="0.2"    
+            nMuro='5'
+            rspTyp1= 'bien'
+            rspTyp2= 'mal'></a-box>
 
         <!--frases-->
         <a-plane id="fw" position="0.7 2 -22" src="./Resourses/Environment/frases/fwoody.png" visible="false"
@@ -352,7 +363,7 @@
 
 
         <!--Jugador-->
-        <a-entity id="player" position="0 0 80" collider movement-controls kinematic-body="radius:0.5">
+        <a-entity id="player" position="0 0 80" collider movement-controls kinematic-body="radius:0.5"  wasd-controls wasd-movement>
             <a-entity camera look-controls="pointerLockEnabled: true;" position="0 2 0">
                 <a-entity cursor position="0 0 -0.5" geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.016"
                     material="opacity:0.5;shader:flat;transparent:true;color:#ff9" scale="0.8 0.8 0.8" raycaster>
