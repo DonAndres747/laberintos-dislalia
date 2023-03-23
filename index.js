@@ -20,7 +20,8 @@ AFRAME.registerComponent('collider', {
          const trgOpc2 = trg.getAttribute('opc2');
          const post1 = trg.getAttribute('post1');
          const post2 = trg.getAttribute('post2');
-         const rotation = trg.getAttribute('rt');
+         let rt = trg.getAttribute('rotation');
+         const rt2 = trg.getAttribute('rt');
          const src1 = trg.getAttribute('src1');
          const src2 = trg.getAttribute('src2');
          const depth = trg.getAttribute('depth1');
@@ -35,18 +36,19 @@ AFRAME.registerComponent('collider', {
          const widthW = trg.getAttribute('widthW');
          const heightW = trg.getAttribute('heightW');
          
+         rt = (rt2==null?rt:rt2)
 
             
          const triggerArgs = {
-            'trigger': [trgAudio, trgOpc1, trgOpc2, post1, post2, postW, rotation, rotationW, src1, src2, depth, depthW, nMuro, rspTyp1, rspTyp2, widthW, heightW]
+            'trigger': [trgAudio, trgOpc1, trgOpc2, post1, post2, postW, rt, rotationW, src1, src2, depth, depthW, nMuro, rspTyp1, rspTyp2, widthW, heightW]
          };
          const triggers = {
 
-            'trigger': (trgAudio, trgOpc1, trgOpc2, post1, post2, postW, rotation, rotationW, src1, src2, depth, depthW, nMuro, rspTyp1, rspTyp2, widthW, heightW) => {
+            'trigger': (trgAudio, trgOpc1, trgOpc2, post1, post2, postW, rt, rotationW, src1, src2, depth, depthW, nMuro, rspTyp1, rspTyp2, widthW, heightW) => {
 
-               newOpci(trgOpc1, trgOpc2, post1, rotation, src1, depth, nMuro, rspTyp1)
-               newOpci(trgOpc1, trgOpc2, post2, rotation, src2, depth, nMuro, rspTyp2)
-               newWall(nMuro, postW, (rotationW==null?rotation:rotationW), depthW, widthW, heightW);
+               newOpci(trgOpc1, trgOpc2, post1, rt, src1, depth, nMuro, rspTyp1)
+               newOpci(trgOpc1, trgOpc2, post2, rt, src2, depth, nMuro, rspTyp2)
+               newWall(nMuro, postW, (rotationW==null?rt:rotationW), depthW, widthW, heightW);
                console.log(trgAudio)
                let audio = document.querySelector("#" + trgAudio);
                audio.play();
@@ -133,7 +135,7 @@ function newWall(nMuro, position, rotation, depth, width, height){
    nuevoBox.setAttribute('depth', (depth==null?'0.1':depth));
    nuevoBox.setAttribute('width', (width==null?'6':width))
    nuevoBox.setAttribute('height', (height==null?'2':height))
-   // nuevoBox.setAttribute('static-body', '')
+   nuevoBox.setAttribute('static-body', '')
 
    sceneEl.appendChild(nuevoBox);
 }
