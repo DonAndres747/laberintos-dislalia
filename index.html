@@ -65,31 +65,41 @@
         <audio id="A6" src="./Resourses/Sounds/palabra.ogg"></audio>
 
         <!--Models-->
-        <a-entity gltf-model="#woody" scale="1.9 1.9 1.9" position="-3 0 -22" onclick="fraseWoody()"
+        <a-entity gltf-model="#woody" scale="1.9 1.9 1.9" position="-3 0 -22"
+            onclick="newfrase('0.7 2 -22', './Resourses/Environment/frases/fwoody.png', '4.5', '2.5')"
             static-body></a-entity>
-        <a-entity gltf-model="#bed" scale="2.5 2.5 2.5" rotation="0 0 0" position="-10 0 -17.5" static-body></a-entity>
+        <a-entity gltf-model="#bed" scale="2.5 2.5 2.5" rotation="0 0 0" position="-10 0 -17.5" static-body>
+        </a-entity>
         <a-entity gltf-model="#trash" scale="0.06 0.06 0.06" rotation="0 90 0" position="-13 0.5 -19"
             static-body></a-entity>
-        <a-entity gltf-model="#desktop" scale="0.6 0.6 0.6" rotation="0 270 0" position="-18 0 -17"></a-entity>
-        <a-entity gltf-model="#dino" scale="0.1 0.1 0.1" rotation="0 -50 0" position="-11 2 -17" static-body></a-entity>
-
+        <a-entity gltf-model="#desktop" scale="0.6 0.6 0.6" rotation="0 270 0" position="-18 0 -17">
+        </a-entity>
+        <a-entity gltf-model="#dino" scale="0.1 0.1 0.1" rotation="0 -50 0" position="-11 2 -17" 
+            onclick="newfrase('-11 2.8 -17', './Resourses/Environment/frases/frase-rex.png', '2', '0.7', '0 -50 0')"
+            static-body></a-entity>
         <a-entity gltf-model="#buzz" scale="0.1 0.1 0.1" rotation="0 220 0" position="-17.5 0 -35.5"
+            onclick="newfrase('-21 2 -35.5', './Resourses/Environment/frases/frase-buzz.png', '4.5', '2.5', '0 160 0')"
             static-body></a-entity>
         <a-entity gltf-model="#child" scale="0.0026 0.0026 0.0026" rotation="0 90 0" position="-17 0 -54"
             static-body></a-entity>
-        <a-entity gltf-model="#toybox" scale="0.04 0.032 0.042" rotation="0 180 0" position="-1.5 0 -54.5"></a-entity>
+        <a-entity gltf-model="#toybox" scale="0.04 0.032 0.042" rotation="0 180 0" position="-1.5 0 -54.5">
+        </a-entity>
         <a-entity gltf-model="#dog-m" scale="0.14 0.14 0.14" rotation="0 60 0" position="-28.5 0 -3"
+            onclick="newfrase('-28.5 2 -3', './Resourses/Environment/frases/frase-perro.png', '3', '1', '0 60 0')"
             static-body></a-entity>
         <a-entity gltf-model="#alien" scale="0.4 0.4 0.4" rotation="0 270 0" position="-15.5 1 -3"
+        onclick="newfrase('-15.5 2 -3', './Resourses/Environment/frases/frase-alien.png', '3', '1', '0 270 0')"
             static-body></a-entity>
-
         <a-entity gltf-model="#jessie" scale="1.4 1.4 1.4" rotation="0 60 0" position="-28.9 0 -38"
+            onclick="newfrase('-28 3 -37.5', './Resourses/Environment/frases/frase-jessie.png', '3', '1', '0 60 0')"
             static-body></a-entity>
-        <a-entity gltf-model="#head" scale="0.05 0.05 0.05" rotation="0 -120 0" position=" 0 0.1 -28.4"
+        <a-entity gltf-model="#head" scale="0.05 0.05 0.05" rotation="0 -120 0" position="0 0.1 -28.4"
             static-body></a-entity>
         <a-entity gltf-model="#carrito" scale="0.8 0.8 0.8" rotation="0 0 0" position=" 12.4 0.2 -23"
+            onclick="newfrase('12.4 2.5 -23', './Resourses/Environment/frases/frase-carro.png', '3', '1', '0 180 0')"
             static-body></a-entity>
         <a-entity gltf-model="#penguin" scale="0.07 0.07 0.07" rotation="0 0 0" position=" 12.2 0 -38"
+            onclick="newfrase('12.2 2.5 -38', './Resourses/Environment/frases/frase-pingu.png', '3', '1')"
             static-body></a-entity>
 
         <!-- <a-entity gltf-model = "#laberinto" scale = "3 3 3" rotation ="0 0 0" position = " 0 0 0" static-body></a-entity> -->
@@ -200,7 +210,7 @@
         <a-box src="#Pared" width="4" height="7.5" depth="0.2" rotation="0 90 0" position="-11.4 1.5 -3"
             static-body></a-box>
         <a-box src="#Pared" width="45" height="7.5" depth="0.2" rotation="0 90 0" position="-32 1.5 -18"
-            static-body></a-box>\
+            static-body></a-box>
         <a-box src="#Pared" width="40" height="7.5" depth="0.2" rotation="0 90 0" position="15 1.5 -38"
             static-body></a-box>
 
@@ -258,228 +268,95 @@
 
         <!--Triggers-->
 
-        <a-box id="trigger" static-body width="4.5" height="0.1"  rotation="0 90 0" visible="false" position="-6 0 -11.5"
-            audio="A1" 
-            opc1="trabajar" opc2="tradajar"  
-            post1="-8 1.5 -10.5" 
-            post2="-8 1.5 -12" 
-            postW = "-8.4 1.5 -11"
-            src1="Resourses/Environment/Trabajar.png" 
-            src2="Resourses/Environment/Tradajar.png" 
-            depth1="0.1" 
-            nMuro=''
-            rspTyp1= 'bien'
-            rspTyp2 = 'mal'
-            ></a-box>
+        <a-box id="trigger" static-body width="4.5" height="0.1" rotation="0 90 0" visible="false" position="-6 0 -11.5"
+            audio="A1" opc1="trabajar" opc2="tradajar" post1="-8 1.5 -10.5" post2="-8 1.5 -12" postW="-8.4 1.5 -11"
+            src1="Resourses/Environment/Trabajar.png" src2="Resourses/Environment/Tradajar.png" depth1="0.1" nMuro=''
+            rspTyp1='bien' rspTyp2='mal'></a-box>
 
         <a-box id="trigger" static-body width="7" height="0.1" rotation="0 0 0" visible="false" position="-1.5 0 -13"
-            audio="A2"
-            opc1="amistad" opc2="amitad" 
-            post1="-0.1 1.5 -15" 
-            post2="-2 1.5 -15"
-            postW = "-1.5 1.5 -15.5"
-            src1="Resourses/Environment/Amistad.png" 
-            src2="Resourses/Environment/Amitad.png" 
-            depth1="0.1" 
-            nMuro='2'
-            rspTyp1= 'bien'
-            rspTyp2 = 'mal'></a-box>  
+            audio="A2" opc1="amistad" opc2="amitad" post1="-0.1 1.5 -15" post2="-2 1.5 -15" postW="-1.5 1.5 -15.5"
+            src1="Resourses/Environment/Amistad.png" src2="Resourses/Environment/Amitad.png" depth1="0.1" nMuro='2'
+            rspTyp1='bien' rspTyp2='mal'></a-box>
 
-        <a-box id="trigger"  static-body width="3.5" height="0.1" rotation="0 90 0" visible="false" position="-22 0 -11.5"
-            audio="A3"
-            opc1="cobija" opc2="codija"
-            post1="-24 1.5 -12"
-            post2="-24 1.5 -10.5"
-            postW = "-23 1.5 -9"
-            rtW="0 0 0"
-            src1="Resourses/Environment/Codija.png" 
-            src2="Resourses/Environment/Cobija.png" 
-            depth1="0.1" 
-            nMuro='1'
-            rspTyp1= 'mal'
-            rspTyp2 = 'bien'></a-box> 
+        <a-box id="trigger" static-body width="3.5" height="0.1" rotation="0 90 0" visible="false"
+            position="-22 0 -11.5" audio="A3" opc1="cobija" opc2="codija" post1="-24 1.5 -12" post2="-24 1.5 -10.5"
+            postW="-23 1.5 -9" rtW="0 0 0" src1="Resourses/Environment/Codija.png"
+            src2="Resourses/Environment/Cobija.png" depth1="0.1" nMuro='1' rspTyp1='mal' rspTyp2='bien'></a-box>
 
-        <a-box id="trigger"  static-body width="7" height="0.1" rotation="0 0 0" visible="false" position="7.5 0 -25"
-            audio="A4" 
-            opc1="plato" opc2="plalto"
-            post1="6.5 1.5 -26" 
-            post2="8 1.5 -26"
-            postW = "7.5 1.5 -26.5"
-            src1="Resourses/Environment/Plalto.png"
-            src2="Resourses/Environment/Plato.png"
-            depth1="0.1" 
-            nMuro='3'
-            rspTyp1= 'mal'
-            rspTyp2= 'bien'></a-box> 
-        
+        <a-box id="trigger" static-body width="7" height="0.1" rotation="0 0 0" visible="false" position="7.5 0 -25"
+            audio="A4" opc1="plato" opc2="plalto" post1="6.5 1.5 -26" post2="8 1.5 -26" postW="7.5 1.5 -26.5"
+            src1="Resourses/Environment/Plalto.png" src2="Resourses/Environment/Plato.png" depth1="0.1" nMuro='3'
+            rspTyp1='mal' rspTyp2='bien'></a-box>
+
         <a-box id="trigger" static-body width="4" height="0.1" rotation="0 90 0" visible="false" position="-13 0 -6.8"
-            audio="A5" 
-            opc1="barril" opc2="baril"
-            post1="-10 1.5 -6.3" 
-            post2="-10 1.5 -7.7"
-            postW="-10 1.5 -5.17"
-            rtW="0 0 0"
-            src1="Resourses/Environment/Baril.png"
-            src2="Resourses/Environment/Barril.png"
-            depth1="0.1"    
-            nMuro='4'
-            rspTyp1= 'mal'
-            rspTyp2= 'bien'></a-box>
-         
-        <a-box id="trigger"  static-body width="4" height="0.1"  depth='5' rotation="0 90 0" visible="false" position="-10.8 0 1"
-            audio="A6" 
-            opc1="palabra" opc2="palabla"
-            post1="-10.8 1.5 1.8"
-            post2="-10.8 1.5 0.2"
-            postW="-10.8 1.5 1"
-            src1="Resourses/Environment/Palabra.png"
-            src2="Resourses/Environment/Palabla.png"
-            depth1="0.2"    
-            nMuro='5'
-            rspTyp1= 'bien'
-            rspTyp2= 'mal'
-            widthW="4" depthW="0.01" ></a-box>
+            audio="A5" opc1="barril" opc2="baril" post1="-10 1.5 -6.3" post2="-10 1.5 -7.7" postW="-10 1.5 -5.17"
+            rtW="0 0 0" src1="Resourses/Environment/Baril.png" src2="Resourses/Environment/Barril.png" depth1="0.1"
+            nMuro='4' rspTyp1='mal' rspTyp2='bien'></a-box>
+
+        <a-box id="trigger" static-body width="4" height="0.1" depth='5' rotation="0 90 0" visible="false"
+            position="-10.8 0 1" audio="A6" opc1="palabra" opc2="palabla" post1="-10.8 1.5 1.8" post2="-10.8 1.5 0.2"
+            postW="-10.8 1.5 1" src1="Resourses/Environment/Palabra.png" src2="Resourses/Environment/Palabla.png"
+            depth1="0.2" nMuro='5' rspTyp1='bien' rspTyp2='mal' widthW="4" depthW="0.01"></a-box>
 
         <!-- modificar -->
-        <a-box id="trigger"  static-body width="4" height="0.1"  rotation="0 0 0" visible="false" position="-26.5 0 -17.7"
-            audio="A6" 
-            opc1="jardin" opc2="jadin"
-            post1="-25.9 1.5 -18.5"
-            post2="-27.1 1.5 -18.5"
-            postW="-26.5 1.5 -19.5"
-            src1="Resourses/Environment/Jardin.png"
-            src2="Resourses/Environment/Jadin.png"
-            depth1="0.2"    
-            nMuro='6'
-            rspTyp1= 'bien'
-            rspTyp2= 'mal'
-            widthW="3.5"></a-box>
-         
-        <a-box id="trigger"  static-body width="3.5" height="0.1"  rotation="0 0 0" visible="false" position="-26.6 0 -25.1"
-            audio="A6" 
-            opc1="perro" opc2="pello"
-            post1="-25.8 1.5 -26"
-            post2="-27.2 1.5 -26"
-            postW="-26.6 1.5 -27"
-            src1="Resourses/Environment/Pello.png"
-            src2="Resourses/Environment/Perro.png"
-            depth1="0.2"    
-            nMuro='7'
-            rspTyp1= 'mal'
-            rspTyp2= 'bien'
-            widthW="3.5"></a-box>    
+        <a-box id="trigger" static-body width="4" height="0.1" rotation="0 0 0" visible="false" position="-26.5 0 -17.7"
+            audio="A6" opc1="jardin" opc2="jadin" post1="-25.9 1.5 -18.5" post2="-27.1 1.5 -18.5"
+            postW="-26.5 1.5 -19.5" src1="Resourses/Environment/Jardin.png" src2="Resourses/Environment/Jadin.png"
+            depth1="0.2" nMuro='6' rspTyp1='bien' rspTyp2='mal' widthW="3.5"></a-box>
 
-        <a-box id="trigger"  static-body width="6.5" height="0.1"  rotation="0 90 0" visible="true" position="-21.27 0 -23.5"
-            audio="A6" 
-            opc1="frio" opc2="fio"
-            post1="-20.27 1.5 -22.8"
-            post2="-20.27 1.5 -25.2"
-            postW="-19.7 1.5 -24.14"
-            src1="Resourses/Environment/Fio.png"
-            src2="Resourses/Environment/Frio.png"
-            depth1="0.2"    
-            nMuro='8'
-            rspTyp1= 'mal'
-            rspTyp2= 'bien'
-            widthW="7"></a-box>  
-            
-        <a-box id="trigger"  static-body width="5" height="0.1"  rotation="0 90 0" visible="true" position="-11.2 0 -23.4"
-            audio="A6" 
-            opc1="libro" opc2="liblo"
-            post1="-8.8 1.5 -22"
-            post2="-8.8 1.5 -23.7"
-            postW="-9 1.5 -25.4"
-            rtW="0 0 0"
-            src1="Resourses/Environment/Liblo.png"
-            src2="Resourses/Environment/Libro.png"
-            depth1="0.2"    
-            nMuro='9'
-            rspTyp1= 'mal'
-            rspTyp2= 'bien'
-            widthW="7"></a-box>             
+        <a-box id="trigger" static-body width="3.5" height="0.1" rotation="0 0 0" visible="false"
+            position="-26.6 0 -25.1" audio="A6" opc1="perro" opc2="pello" post1="-25.8 1.5 -26" post2="-27.2 1.5 -26"
+            postW="-26.6 1.5 -27" src1="Resourses/Environment/Pello.png" src2="Resourses/Environment/Perro.png"
+            depth1="0.2" nMuro='7' rspTyp1='mal' rspTyp2='bien' widthW="3.5"></a-box>
 
-        <a-box id="trigger"  static-body width="5" height="0.1"  rotation="0 0 0" visible="true" position="-12.5 0 -33"
-            audio="A6" 
-            opc1="fuego" opc2="fuejo"
-            post1="-11.8 1.5 -33.8"
-            post2="-13.3 1.5 -33.8"
-            postW="-12.5 1.5 -34.5"
-            src1="Resourses/Environment/Fuego.png"
-            src2="Resourses/Environment/Fuejo.png"
-            depth1="0.2"    
-            nMuro='10'
-            rspTyp1= 'bien'
-            rspTyp2= 'mal'
-            widthW="5"></a-box>  
+        <a-box id="trigger" static-body width="6.5" height="0.1" rotation="0 90 0" visible="false"
+            position="-21.27 0 -23.5" audio="A6" opc1="frio" opc2="fio" post1="-20.27 1.5 -22.8"
+            post2="-20.27 1.5 -25.2" postW="-19.7 1.5 -24.14" src1="Resourses/Environment/Fio.png"
+            src2="Resourses/Environment/Frio.png" depth1="0.2" nMuro='8' rspTyp1='mal' rspTyp2='bien'
+            widthW="7"></a-box>
 
-        <a-box id="trigger"  static-body width="5" height="0.1"  rotation="0 0 0" visible="true" position="-7.6 0 -31.2"
-            audio="A6" 
-            opc1="abrigo" opc2="abligo"
-            post1="-6.6 1.5 -33"
-            post2="-8.2 1.5 -33"
-            postW="-5.2 1.5 -33"
-            rtW="0 90 0"
-            src1="Resourses/Environment/Abligo.png"
-            src2="Resourses/Environment/Abrigo.png"
-            depth1="0.2"    
-            nMuro='11'
-            rspTyp1= 'mal'
-            rspTyp2= 'bien'
-            widthW="6.5"></a-box>  
+        <a-box id="trigger" static-body width="5" height="0.1" rotation="0 90 0" visible="false"
+            position="-11.2 0 -23.4" audio="A6" opc1="libro" opc2="liblo" post1="-8.8 1.5 -22" post2="-8.8 1.5 -23.7"
+            postW="-9 1.5 -25.4" rtW="0 0 0" src1="Resourses/Environment/Liblo.png"
+            src2="Resourses/Environment/Libro.png" depth1="0.2" nMuro='9' rspTyp1='mal' rspTyp2='bien'
+            widthW="7"></a-box>
 
-        <a-box id="trigger"  static-body width="5" height="0.1"  rotation="0 90 0" visible="true" position="-1 0 -34"
-            audio="A6" 
-            opc1="bicicleta" opc2="bicileta"
-            post1="-0.8 1.5 -33"
-            post2="-0.8 1.5 -35"
-            postW="1.8 1.5 -36"
-            rtW="0 0 0"
-            src1="Resourses/Environment/Bicicleta.png"
-            src2="Resourses/Environment/Bicileta.png"
-            depth1="0.2"    
-            nMuro='12'
-            rspTyp1= 'bien'
-            rspTyp2= 'mal'></a-box>  
+        <a-box id="trigger" static-body width="5" height="0.1" rotation="0 0 0" visible="false" position="-12.5 0 -33"
+            audio="A6" opc1="fuego" opc2="fuejo" post1="-11.8 1.5 -33.8" post2="-13.3 1.5 -33.8" postW="-12.5 1.5 -34.5"
+            src1="Resourses/Environment/Fuego.png" src2="Resourses/Environment/Fuejo.png" depth1="0.2" nMuro='10'
+            rspTyp1='bien' rspTyp2='mal' widthW="5"></a-box>
 
-        <a-box id="trigger"  static-body width="4.5" height="0.1"  rotation="0 0 0" visible="true" position="7.5 0 -44"
-            audio="A6" 
-            opc1="grande" opc2="gande"
-            post1="6.8 1.5 -46"
-            post2="8.3 1.5 -46"
-            postW="7.5 1.5 -47"
-            src1="Resourses/Environment/Gande.png"
-            src2="Resourses/Environment/Grande.png"
-            depth1="0.2"    
-            nMuro='13'
-            rspTyp1= 'mal'
-            rspTyp2= 'bien'
-            widthW="4.5"></a-box>           
-            
-        <a-box id="trigger"  static-body width="5" height="0.1"  rotation="0 90 0" visible="true" position="-10 0 -38.8"
-            audio="A6" 
-            opc1="tormenta" opc2="tormena"
-            post1="-9 1.5 -39.5"
-            post2="-9 1.5 -37.8"
-            postW="-10.3 1.5 -41"
-            rtW="0 0 0"
-            src1="Resourses/Environment/Tormena.png"
-            src2="Resourses/Environment/tormenta.png"
-            depth1="0.2"    
-            nMuro='14'
-            rspTyp1= 'mal'
-            rspTyp2= 'bien'
-            widthW="5.5"></a-box>        
-        
+        <a-box id="trigger" static-body width="5" height="0.1" rotation="0 0 0" visible="false" position="-7.6 0 -31.2"
+            audio="A6" opc1="abrigo" opc2="abligo" post1="-6.6 1.5 -33" post2="-8.2 1.5 -33" postW="-5.2 1.5 -33"
+            rtW="0 90 0" src1="Resourses/Environment/Abligo.png" src2="Resourses/Environment/Abrigo.png" depth1="0.2"
+            nMuro='11' rspTyp1='mal' rspTyp2='bien' widthW="6.5"></a-box>
+
+        <a-box id="trigger" static-body width="5" height="0.1" rotation="0 90 0" visible="false" position="-1 0 -34"
+            audio="A6" opc1="bicicleta" opc2="bicileta" post1="-0.8 1.5 -33" post2="-0.8 1.5 -35" postW="1.8 1.5 -36"
+            rtW="0 0 0" src1="Resourses/Environment/Bicicleta.png" src2="Resourses/Environment/Bicileta.png"
+            depth1="0.2" nMuro='12' rspTyp1='bien' rspTyp2='mal'></a-box>
+
+        <a-box id="trigger" static-body width="4.5" height="0.1" rotation="0 0 0" visible="false" position="7.5 0 -44"
+            audio="A6" opc1="grande" opc2="gande" post1="6.8 1.5 -46" post2="8.3 1.5 -46" postW="7.5 1.5 -47"
+            src1="Resourses/Environment/Gande.png" src2="Resourses/Environment/Grande.png" depth1="0.2" nMuro='13'
+            rspTyp1='mal' rspTyp2='bien' widthW="4.5"></a-box>
+
+        <a-box id="trigger" static-body width="5" height="0.1" rotation="0 90 0" visible="false" position="-10 0 -38.8"
+            audio="A6" opc1="tormenta" opc2="tormena" post1="-9 1.5 -39.5" post2="-9 1.5 -37.8" postW="-10.3 1.5 -41"
+            rtW="0 0 0" src1="Resourses/Environment/Tormena.png" src2="Resourses/Environment/tormenta.png" depth1="0.2"
+            nMuro='14' rspTyp1='mal' rspTyp2='bien' widthW="5.5"></a-box>
+
         <!--frases-->
-        <a-plane id="fw" position="0.7 2 -22" src="./Resourses/Environment/frases/fwoody.png" visible="false"
-            depth="0.1" width="4.5" height="2.5" material="transparent: true"></a-plane>
+        <!-- <a-plane id="fw" position="0.7 2 -22" src="./Resourses/Environment/frases/fwoody.png" visible="false"
+            depth="0.1" width="4.5" height="2.5" material="transparent: true"></a-plane> -->
 
         <!--puntuacion-->
 
 
 
         <!--Jugador-->
-        <a-entity id="player" position="0 0 80" collider movement-controls kinematic-body="radius:0.5"  wasd-controls wasd-movement>
+        <a-entity id="player" position="0 0 80" collider movement-controls kinematic-body="radius:0.5" wasd-controls
+            wasd-movement>
             <a-entity camera look-controls="pointerLockEnabled: true;" position="0 2 0">
                 <a-entity cursor position="0 0 -0.5" geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.016"
                     material="opacity:0.5;shader:flat;transparent:true;color:#ff9" scale="0.8 0.8 0.8" raycaster>

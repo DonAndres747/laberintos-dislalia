@@ -53,10 +53,6 @@ AFRAME.registerComponent('collider', {
                let audio = document.querySelector("#" + trgAudio);
                audio.play();
                e.detail.body.el.parentNode.removeChild(e.detail.body.el);
-               
-               // newOpci(trgOpc1, trgOpc2, position1, rotation, src1, depth, nMuro, 'bien');
-               // newOpci(trgOpc1, trgOpc2, position2, rotation, src2, depth, nMuro, 'mal')
-
             }
 
          }
@@ -100,18 +96,10 @@ function mal(opcion1, opcion2, nMuro, sceneEl) {
    opcBad.parentNode.removeChild(opcBad);
 }
 
-function fraseWoody() {
-   let frase = document.querySelector("#fw");
-   frase.setAttribute("visible", "true");
-   setTimeout(() => {
-      frase.setAttribute("visible", "false");
-   }, 5000);
-}
-
 function newOpci(trgOpc1, trgOpc2, position, rotation, src, depth, nMuro, rspTyp) {
    const nuevoBox = document.createElement('a-box');
    const sceneEl = document.querySelector('a-scene');
-
+   
    nuevoBox.setAttribute('id', (rspTyp == 'bien' ? trgOpc1 : trgOpc2) + "Opc");
    nuevoBox.setAttribute('visible', 'true');
    nuevoBox.setAttribute('position', position);
@@ -129,13 +117,40 @@ function newWall(nMuro, position, rotation, depth, width, height){
    const sceneEl = document.querySelector('a-scene');
 
    nuevoBox.setAttribute('id', "muro" + nMuro);
-   nuevoBox.setAttribute('visible', 'true');
+   nuevoBox.setAttribute('visible', 'false');
    nuevoBox.setAttribute('position', position);
    nuevoBox.setAttribute('rotation', rotation);
    nuevoBox.setAttribute('depth', (depth==null?'0.1':depth));
    nuevoBox.setAttribute('width', (width==null?'6':width))
    nuevoBox.setAttribute('height', (height==null?'2':height))
-   nuevoBox.setAttribute('static-body', '')
-
+   // nuevoBox.setAttribute('static-body', '')
+   
    sceneEl.appendChild(nuevoBox);
+}
+
+function newfrase(pst, src, width, height, rt) {
+   // let frase = document.querySelector("#fw");
+   // frase.setAttribute("visible", "true");
+   // setTimeout(() => {
+   //    frase.setAttribute("visible", "false");
+   // }, 5000);
+
+   const nuevaFrase = document.createElement('a-plane');
+   const sceneEl = document.querySelector('a-scene');
+
+   nuevaFrase.setAttribute('id','frase')
+   nuevaFrase.setAttribute('position',pst)
+   nuevaFrase.setAttribute('src',src)
+   nuevaFrase.setAttribute('material',"transparent:true")
+   nuevaFrase.setAttribute('depth','0.1')
+   nuevaFrase.setAttribute('width',width)
+   nuevaFrase.setAttribute('height',height)
+   nuevaFrase.setAttribute('rotation', (rt==null?'0 0 0':rt));
+   console.log('rt', rt)
+   
+   sceneEl.appendChild(nuevaFrase);
+
+   setTimeout(() => {
+      sceneEl.removeChild(nuevaFrase)
+   }, 5000);
 }
