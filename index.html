@@ -19,11 +19,16 @@
 <body>
     <!-- <audio src="./Resourses/Sounds/musica-fondo.mp3" id="mundoAudio"></audio> -->
 
-   
-    <a-scene light="defaultLightsEnabled: true" inspector physics="restitution: 0;">
+    <div
+        style="background-color: transparent; width: 100%; height: 100%; align-items: center; display: flex; justify-content: center;">
+        <div class="menuContainer" style="background-color: white; width: 40%; height: 40%; align-items: center; display: flex; justify-content: center;">
+            
+        </div>
+    </div>
+    <a-scene style="z-index: -1" light="defaultLightsEnabled: true" inspector physics="restitution: 0;">
         <!--Recursos-->
 
-        
+
 
         <a-assets>
             <!--Texturas-->
@@ -80,12 +85,10 @@
         <a-entity gltf-model="#dino" scale="0.1 0.1 0.1" rotation="0 -50 0" position="-11 2 -17"
             onclick="newfrase('-11 2.8 -17', './Resourses/Environment/frases/frase-rex.png', '2', '0.7', '0 -50 0')"
             static-body></a-entity>
-        <a-entity gltf-model="#buzz" scale="0.1 0.1 0.1" rotation="0 220 0" position="-17.5 0 -35.5"
-            onclick="(()=>{
+        <a-entity gltf-model="#buzz" scale="0.1 0.1 0.1" rotation="0 220 0" position="-17.5 0 -35.5" onclick="(()=>{
                 newfrase('-21 2 -35.5', './Resourses/Environment/frases/frase-buzz.png', '4.5', '2.5', '0 160 0');
                 finalScore();
-            })()"
-            static-body></a-entity>
+            })()" static-body></a-entity>
         <a-entity gltf-model="#child" scale="0.0026 0.0026 0.0026" rotation="0 90 0" position="-17 0 -54"
             static-body></a-entity>
         <a-entity gltf-model="#toybox" scale="0.04 0.032 0.042" rotation="0 180 0" position="-1.5 0 -54.5">
@@ -111,11 +114,11 @@
 
         <!-- Puntuacion Final-->
         <!-- font:./Resourses/Fonts/bloodlust-msdf.json; fuente-->
-        <a-plane id="score" visible="false" position="-21.9 1.5 -35.85" rotation='0 160 0' color="transparent" width="4" height="3" material="alphaTest:100;"
-            text="color:yellow; wrapCount: 30; value: tu puntuacion es:;">
+        <a-plane id="score" visible="false" position="-21.9 1.5 -35.85" rotation='0 160 0' color="transparent" width="4"
+            height="3" material="alphaTest:100;" text="color:yellow; wrapCount: 30; value: tu puntuacion es:;">
         </a-plane>
-        <a-plane id="score1" visible="false" position="-23.62 1.5 -36.49" rotation='0 160 0' color="transparent" width="4" height="3" material="alphaTest:100;"
-            text="color:yellow; wrapCount: 30; value: 100.;">
+        <a-plane id="score1" visible="false" position="-23.62 1.5 -36.49" rotation='0 160 0' color="transparent"
+            width="4" height="3" material="alphaTest:100;" text="color:yellow; wrapCount: 30; value: 100.;">
         </a-plane>
 
         <!--Menu-->
@@ -346,10 +349,11 @@
             src1="Resourses/Environment/Gande.png" src2="Resourses/Environment/Grande.png" depth1="0.2" nMuro='13'
             rspTyp1='mal' rspTyp2='bien' widthW="4.5"></a-box>
 
-        <a-box id="trigger" static-body width="5" height="0.1" depth='5' rotation="0 90 0" visible="false" position="-12 0 -38.8"
-            audio="A6" opc1="tormenta" opc2="tormena" post1="-9 1.5 -39.5" post2="-9 1.5 -37.8" postW="-10.3 1.5 -41"
-            rtW="0 0 0" src1="Resourses/Environment/tormena.png" src2="Resourses/Environment/tormenta.png" depth1="0.2"
-            nMuro='14' rspTyp1='mal' rspTyp2='bien' widthW="5.5"></a-box>
+        <a-box id="trigger" static-body width="5" height="0.1" depth='5' rotation="0 90 0" visible="false"
+            position="-12 0 -38.8" audio="A6" opc1="tormenta" opc2="tormena" post1="-9 1.5 -39.5" post2="-9 1.5 -37.8"
+            postW="-10.3 1.5 -41" rtW="0 0 0" src1="Resourses/Environment/tormena.png"
+            src2="Resourses/Environment/tormenta.png" depth1="0.2" nMuro='14' rspTyp1='mal' rspTyp2='bien'
+            widthW="5.5"></a-box>
 
 
 
@@ -363,5 +367,11 @@
                 </a-entity>
     </a-scene>
 </body>
+
+<script>
+    $(document).ready(function () {
+        $('.menuContainer').load('./login.html');
+    });
+</script>
 
 </html>
