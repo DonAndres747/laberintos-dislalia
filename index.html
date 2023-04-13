@@ -63,6 +63,7 @@
         <audio id="A4" src="./Resourses/Sounds/plato.ogg"></audio>
         <audio id="A5" src="./Resourses/Sounds/Barril.ogg"></audio>
         <audio id="A6" src="./Resourses/Sounds/palabra.ogg"></audio>
+        <audio id="AC" src="./Resourses/Sounds/congratulations.mp3"></audio>
 
         <!--Models-->
         <a-entity gltf-model="#woody" scale="1.9 1.9 1.9" position="-3 0 -22"
@@ -74,11 +75,14 @@
             static-body></a-entity>
         <a-entity gltf-model="#desktop" scale="0.6 0.6 0.6" rotation="0 270 0" position="-18 0 -17">
         </a-entity>
-        <a-entity gltf-model="#dino" scale="0.1 0.1 0.1" rotation="0 -50 0" position="-11 2 -17" 
+        <a-entity gltf-model="#dino" scale="0.1 0.1 0.1" rotation="0 -50 0" position="-11 2 -17"
             onclick="newfrase('-11 2.8 -17', './Resourses/Environment/frases/frase-rex.png', '2', '0.7', '0 -50 0')"
             static-body></a-entity>
         <a-entity gltf-model="#buzz" scale="0.1 0.1 0.1" rotation="0 220 0" position="-17.5 0 -35.5"
-            onclick="newfrase('-21 2 -35.5', './Resourses/Environment/frases/frase-buzz.png', '4.5', '2.5', '0 160 0')"
+            onclick="(()=>{
+                newfrase('-21 2 -35.5', './Resourses/Environment/frases/frase-buzz.png', '4.5', '2.5', '0 160 0');
+                finalScore();
+            })()"
             static-body></a-entity>
         <a-entity gltf-model="#child" scale="0.0026 0.0026 0.0026" rotation="0 90 0" position="-17 0 -54"
             static-body></a-entity>
@@ -88,7 +92,7 @@
             onclick="newfrase('-28.5 2 -3', './Resourses/Environment/frases/frase-perro.png', '3', '1', '0 60 0')"
             static-body></a-entity>
         <a-entity gltf-model="#alien" scale="0.4 0.4 0.4" rotation="0 270 0" position="-15.5 1 -3"
-        onclick="newfrase('-15.5 2 -3', './Resourses/Environment/frases/frase-alien.png', '3', '1', '0 270 0')"
+            onclick="newfrase('-15.5 2 -3', './Resourses/Environment/frases/frase-alien.png', '3', '1', '0 270 0')"
             static-body></a-entity>
         <a-entity gltf-model="#jessie" scale="1.4 1.4 1.4" rotation="0 60 0" position="-28.9 0 -38"
             onclick="newfrase('-28 3 -37.5', './Resourses/Environment/frases/frase-jessie.png', '3', '1', '0 60 0')"
@@ -102,15 +106,15 @@
             onclick="newfrase('12.2 2.5 -38', './Resourses/Environment/frases/frase-pingu.png', '3', '1')"
             static-body></a-entity>
 
-        <!-- <a-entity gltf-model = "#laberinto" scale = "3 3 3" rotation ="0 0 0" position = " 0 0 0" static-body></a-entity> -->
 
-
-
-
-
-        <!-- <a-box src="#Puerta" sound="src: #opendoor; on: click;" width="1.6" height="5.5" depth="0.5"
-            position="-6 2.5 -13.7" animation="property: rotation; startEvents:click; to: 0 90 0; dur: 3000"
-            animation__2="property: position; startEvents:click; to: -7.2 2.5 -14.6; dur: 200" static-body></a-box> -->
+        <!-- Puntuacion Final-->
+        <!-- font:./Resourses/Fonts/bloodlust-msdf.json; fuente-->
+        <a-plane id="score" visible="false" position="-21.9 1.5 -35.85" rotation='0 160 0' color="transparent" width="4" height="3" material="alphaTest:100;"
+            text="color:yellow; wrapCount: 30; value: tu puntuacion es:;">
+        </a-plane>
+        <a-plane id="score1" visible="false" position="-23.62 1.5 -36.49" rotation='0 160 0' color="transparent" width="4" height="3" material="alphaTest:100;"
+            text="color:yellow; wrapCount: 30; value: 100.;">
+        </a-plane>
 
         <!--Menu-->
         <a-box src="#Pared" width="8" height="7" depth="1" position="0 1.5 81" static-body></a-box>
@@ -129,7 +133,6 @@
         <a-entity id="luz" light="type: ambient; color: #white; intensity: 1"></a-entity>
 
         <!--Paredes inicio-->
-
         <a-box src="#Pared" width="21" height="7.5" depth="0.2" rotation="0 90 0" position="2 1.5 -7.5"
             static-body></a-box>
         <a-box src="#Pared" width="12" height="7.5" depth="0.2" rotation="0 90 0" position="-5 1.5 -3"
@@ -299,7 +302,7 @@
             depth1="0.2" nMuro='5' rspTyp1='bien' rspTyp2='mal' widthW="4" depthW="0.01"></a-box>
 
         <!-- modificar -->
-        <a-box id="trigger" static-body width="4" height="0.1" rotation="0 0 0" visible="false" position="-26.5 0 -17.7"
+        <a-box id="trigger" static-body width="4" height="0.1" rotation="0 0 0" visible="false" position="-26.5 0 -16"
             audio="A6" opc1="jardin" opc2="jadin" post1="-25.9 1.5 -18.5" post2="-27.1 1.5 -18.5"
             postW="-26.5 1.5 -19.5" src1="Resourses/Environment/Jardin.png" src2="Resourses/Environment/Jadin.png"
             depth1="0.2" nMuro='6' rspTyp1='bien' rspTyp2='mal' widthW="3.5"></a-box>
@@ -309,7 +312,7 @@
             postW="-26.6 1.5 -27" src1="Resourses/Environment/Pello.png" src2="Resourses/Environment/Perro.png"
             depth1="0.2" nMuro='7' rspTyp1='mal' rspTyp2='bien' widthW="3.5"></a-box>
 
-        <a-box id="trigger" static-body width="6.5" height="0.1" rotation="0 90 0" visible="false"
+        <a-box id="trigger" static-body width="6.5" depth='3' height="0.1" rotation="0 90 0" visible="false"
             position="-21.27 0 -23.5" audio="A6" opc1="frio" opc2="fio" post1="-20.27 1.5 -22.8"
             post2="-20.27 1.5 -25.2" postW="-19.7 1.5 -24.14" src1="Resourses/Environment/Fio.png"
             src2="Resourses/Environment/Frio.png" depth1="0.2" nMuro='8' rspTyp1='mal' rspTyp2='bien'
@@ -341,16 +344,11 @@
             src1="Resourses/Environment/Gande.png" src2="Resourses/Environment/Grande.png" depth1="0.2" nMuro='13'
             rspTyp1='mal' rspTyp2='bien' widthW="4.5"></a-box>
 
-        <a-box id="trigger" static-body width="5" height="0.1" rotation="0 90 0" visible="false" position="-10 0 -38.8"
+        <a-box id="trigger" static-body width="5" height="0.1" depth='5' rotation="0 90 0" visible="false" position="-12 0 -38.8"
             audio="A6" opc1="tormenta" opc2="tormena" post1="-9 1.5 -39.5" post2="-9 1.5 -37.8" postW="-10.3 1.5 -41"
             rtW="0 0 0" src1="Resourses/Environment/Tormena.png" src2="Resourses/Environment/tormenta.png" depth1="0.2"
             nMuro='14' rspTyp1='mal' rspTyp2='bien' widthW="5.5"></a-box>
 
-        <!--frases-->
-        <!-- <a-plane id="fw" position="0.7 2 -22" src="./Resourses/Environment/frases/fwoody.png" visible="false"
-            depth="0.1" width="4.5" height="2.5" material="transparent: true"></a-plane> -->
-
-        <!--puntuacion-->
 
 
 
