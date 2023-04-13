@@ -6,3 +6,9 @@ function login(){
     document.querySelector('a-scene').setAttribute('style', 'z-index = 1')
 
 }
+
+function registerView(){
+    $(document).ready(function () {
+        $('.menuContainer').load('./registry.html');
+    });
+}

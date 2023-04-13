@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="../js/login.js"></script>
+    <script src="../js/registry.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <!--Stylesheet-->
     <style media="screen">
@@ -24,8 +24,6 @@
             height: 520px;
             position: absolute;
             transform: translate(-50%, -50%);
-            left: 50%;
-            top: 50%;
         }
 
         .background .shape {
@@ -35,23 +33,11 @@
             border-radius: 50%;
         }
 
-        .shape:first-child {
-            background: linear-gradient(#1845ad,
-                    #23a2f6);
-            left: -80px;
-            top: -80px;
-        }
 
-        .shape:last-child {
-            background: linear-gradient(to right,
-                    #ff512f,
-                    #f09819);
-            right: -30px;
-            bottom: -80px;
-        }
+
 
         form {
-            height: 520px;
+            height: 560px;
             width: 400px;
             background-color: rgba(4, 124, 4, 0.322);
             position: absolute;
@@ -62,7 +48,7 @@
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-            padding: 50px 35px;
+            padding: 35px 35px;
         }
 
         form * {
@@ -104,7 +90,7 @@
         }
 
         button {
-            margin-top: 50px;
+            margin-top: 30px;
             width: 100%;
             background-color: #ffffff;
             color: #080710;
@@ -116,26 +102,25 @@
         }
 
         .social {
-            margin-top: 30px;
+            margin-top: 10px;
             display: flex;
         }
 
         .social div {
             background: red;
-            width: 150px;
+            width: 100%;
             border-radius: 3px;
-            padding: 5px 10px 10px 5px;
+            padding: 15px 0;
             background-color: rgba(255, 255, 255, 0.27);
             color: #eaf0fb;
             text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
         }
 
         .social div:hover {
             background-color: rgba(255, 255, 255, 0.47);
-        }
-
-        .social .fb {
-            margin-left: 25px;
         }
 
         .social i {
@@ -146,18 +131,22 @@
 
 <body>
     <form>
-        <h3>Login Here</h3>
+        <h3>Registro</h3>
 
-        <label for="username">Nickname</label>
-        <input type="text" placeholder="PepitoMaster32" id="username">
+        
+        <input type="text" placeholder="Nombre y Apellido" id="username">
+        
+        <input type="text" placeholder="Nickname" id="nickname">
 
-        <label for="password">Contraseña</label>
+        <input type="number" placeholder="Edad" id="edad">
+        
         <input type="password" placeholder="Contraseña" id="password">
+        
+        <input type="password" placeholder="Repetir Contraseña" id="password1">
 
-        <button onclick="login()">Log In</button>
+        <button onclick="loginView()">Registrar</button>
         <div class="social">
-            <div class="go" onclick="registerView()"><i class="fab fa-google"></i> Registrar</div>
-            <div class="fb"><i class="fab fa-facebook"></i> Consultar</div>
+            <div class="go" onclick="loginView()"><i class="fab fa-google"></i> Volver</div>
         </div>
     </form>
 </body>
