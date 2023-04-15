@@ -9,6 +9,6 @@ function login(){
 
 function registerView(){
     $(document).ready(function () {
-        $('.menuContainer').load('./registry.html');
+        $('.menuContainer').load('./html/registry.html');
     });
 }
