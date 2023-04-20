@@ -1,14 +1,9 @@
 function login(){
-    let Div = document.querySelector('div')
-    // console.log(Div)
-    // Div.setAttribute('style','background-color: red')
-    document.querySelector('body').removeChild(Div)
-    document.querySelector('a-scene').setAttribute('style', 'z-index = 1')
-
+    window.parent.document.querySelector('a-scene').setAttribute('style', 'z-index = 1')
+    window.parent.document.querySelector('iframe').remove()
 }
 
 function registerView(){
-    $(document).ready(function () {
-        $('.menuContainer').load('registry.html');
-    });
+    var Div = window.parent.document.querySelector('iframe');
+    Div.setAttribute("src", "./registry.html")
 }

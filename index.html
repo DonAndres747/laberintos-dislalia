@@ -12,7 +12,6 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="//unpkg.com/aframe-physics-system@3.1.2/dist/aframe-physics-system.min.js"></script>
     <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
-    <script src="index.js"></script>
     <title>Prueba Dislalia</title>
 </head>
 
@@ -22,7 +21,17 @@
     <div
         style="background-color: transparent; width: 100%; height: 100%; align-items: center; display: flex; justify-content: center;">
         <div class="menuContainer"
-            style="width: 40%; height: 40%; align-items: center; display: flex; justify-content: center; border-radius: 10%;">
+            style="width: 100%; height: 100%; align-items: center; display: flex; justify-content: center; border-radius: 10%;">
+            <iframe src="./login.html"  
+            id="iframe"
+            width="100%" 
+            height="100%"  
+            scrolling="no" 
+            frameborder="0"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+            ></iframe>
         </div>
     </div>
     <a-scene style="z-index: -1" light="defaultLightsEnabled: true" inspector physics="restitution: 0;">
@@ -278,13 +287,13 @@
 
         <a-box id="trigger" static-body width="4.5" height="0.1" rotation="0 90 0" visible="false" position="-6 0 -11.5"
             audio="A1" opc1="trabajar" opc2="tradajar" post1="-8 1.5 -10.5" post2="-8 1.5 -12" postW="-8.4 1.5 -11"
-            src1="Resourses/Environment/Trabajar.png" src2="Resourses/Environment/Tradajar.png" depth1="0.1"
-            nMuro='' rspTyp1='bien' rspTyp2='mal'></a-box>
+            src1="Resourses/Environment/Trabajar.png" src2="Resourses/Environment/Tradajar.png" depth1="0.1" nMuro=''
+            rspTyp1='bien' rspTyp2='mal'></a-box>
 
         <a-box id="trigger" static-body width="7" height="0.1" rotation="0 0 0" visible="false" position="-1.5 0 -13"
             audio="A2" opc1="amistad" opc2="amitad" post1="-0.1 1.5 -15" post2="-2 1.5 -15" postW="-1.5 1.5 -15.5"
-            src1="Resourses/Environment/Amistad.png" src2="Resourses/Environment/Amitad.png" depth1="0.1"
-            nMuro='2' rspTyp1='bien' rspTyp2='mal'></a-box>
+            src1="Resourses/Environment/Amistad.png" src2="Resourses/Environment/Amitad.png" depth1="0.1" nMuro='2'
+            rspTyp1='bien' rspTyp2='mal'></a-box>
 
         <a-box id="trigger" static-body width="3.5" height="0.1" rotation="0 90 0" visible="false"
             position="-22 0 -11.5" audio="A3" opc1="cobija" opc2="codija" post1="-24 1.5 -12" post2="-24 1.5 -10.5"
@@ -298,8 +307,8 @@
 
         <a-box id="trigger" static-body width="4" height="0.1" rotation="0 90 0" visible="false" position="-13 0 -6.8"
             audio="A5" opc1="barril" opc2="baril" post1="-10 1.5 -6.3" post2="-10 1.5 -7.7" postW="-10 1.5 -5.17"
-            rtW="0 0 0" src1="Resourses/Environment/Baril.png" src2="Resourses/Environment/Barril.png"
-            depth1="0.1" nMuro='4' rspTyp1='mal' rspTyp2='bien'></a-box>
+            rtW="0 0 0" src1="Resourses/Environment/Baril.png" src2="Resourses/Environment/Barril.png" depth1="0.1"
+            nMuro='4' rspTyp1='mal' rspTyp2='bien'></a-box>
 
         <a-box id="trigger" static-body width="4" height="0.1" depth='5' rotation="0 90 0" visible="false"
             position="-10.8 0 1" audio="A6" opc1="palabra" opc2="palabla" post1="-10.8 1.5 1.8" post2="-10.8 1.5 0.2"
@@ -336,8 +345,8 @@
 
         <a-box id="trigger" static-body width="5" height="0.1" rotation="0 0 0" visible="false" position="-7.6 0 -31.2"
             audio="A6" opc1="abrigo" opc2="abligo" post1="-6.6 1.5 -33" post2="-8.2 1.5 -33" postW="-5.2 1.5 -33"
-            rtW="0 90 0" src1="Resourses/Environment/Abligo.png" src2="Resourses/Environment/Abrigo.png"
-            depth1="0.2" nMuro='11' rspTyp1='mal' rspTyp2='bien' widthW="6.5"></a-box>
+            rtW="0 90 0" src1="Resourses/Environment/Abligo.png" src2="Resourses/Environment/Abrigo.png" depth1="0.2"
+            nMuro='11' rspTyp1='mal' rspTyp2='bien' widthW="6.5"></a-box>
 
         <a-box id="trigger" static-body width="5" height="0.1" rotation="0 90 0" visible="false" position="-2 0 -34"
             audio="A6" opc1="bicicleta" opc2="bicileta" post1="2.5 1.5 -33" post2="2.5 1.5 -35" postW="1.8 1.5 -36"
@@ -359,8 +368,8 @@
 
 
         <!--Jugador-->
-        <a-entity id="player" position="0 0 78" rotation='0 180 0' collider movement-controls kinematic-body="radius:0.5" wasd-controls
-            wasd-movement>
+        <a-entity id="player" position="0 0 78" rotation='0 180 0' collider movement-controls
+            kinematic-body="radius:0.5" wasd-controls wasd-movement>
             <a-entity camera look-controls="pointerLockEnabled: true;" position="0 2 0">
                 <a-entity cursor position="0 0 -0.5" geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.016"
                     material="opacity:0.5;shader:flat;transparent:true;color:#ff9" scale="0.8 0.8 0.8" raycaster>
@@ -368,10 +377,12 @@
     </a-scene>
 </body>
 
-<script>
+<script src="index.js"></script>
+<object data="registry.html"></object>
+<!-- <script type="module">
     $(document).ready(function () {
         $('.menuContainer').load('login.html');
     });
-</script>
+</script> -->
 
 </html>

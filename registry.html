@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="registry.js"></script>
+
+    <!-- otras etiquetas de cabeza... -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
     <!--Stylesheet-->
     <style media="screen">
         *,
@@ -32,8 +34,6 @@
             position: absolute;
             border-radius: 50%;
         }
-
-
 
 
         form {
@@ -66,16 +66,10 @@
             text-align: center;
         }
 
-        label {
-            display: block;
-            margin-top: 30px;
-            font-size: 16px;
-            font-weight: 500;
-        }
 
         input {
             display: block;
-            height: 50px;
+            height: 45px;
             width: 100%;
             background-color: rgba(255, 255, 255, 0.07);
             border-radius: 3px;
@@ -90,7 +84,7 @@
         }
 
         button {
-            margin-top: 30px;
+            margin-top: 18px;
             width: 100%;
             background-color: #ffffff;
             color: #080710;
@@ -130,25 +124,40 @@
 </head>
 
 <body>
-    <form>
+    <form id="regForm">
         <h3>Registro</h3>
 
-        
+
         <input type="text" placeholder="Nombre y Apellido" id="username">
-        
+
         <input type="text" placeholder="Nickname" id="nickname">
 
-        <input type="number" placeholder="Edad" id="edad">
-        
+        <input type="text" placeholder="Tutor" id="tutor">
+
+        <input type="number" placeholder="Edad" id="age">
+
         <input type="password" placeholder="Contraseña" id="password">
-        
+
         <input type="password" placeholder="Repetir Contraseña" id="password1">
 
-        <button onclick="loginView()">Registrar</button>
-        <div class="social">
-            <div class="go" onclick="loginView()"><i class="fab fa-google"></i> Volver</div>
+        <button>Registrar</button>
+        <div class="social" id="volver">
+            <div id="volver"><i class="fab fa-google"></i> Volver</div>
         </div>
+
+        <script type="module">
+            import * as registry from "./registry.js"
+            window.addEventListener('load', function () {
+                document.getElementById('volver').addEventListener('click', function () {
+                    registry.loginView();
+                });
+                document.querySelector('button').addEventListener('click', (e) => {
+                    registry.registrar(e);
+                });
+            });
+        </script>
+
     </form>
 </body>
 
-</html>;
+</html>
