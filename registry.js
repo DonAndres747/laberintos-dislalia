@@ -1,28 +1,31 @@
-import {registerUser} from './firebase.js'
+import firebase from './firebase.js'
 
 const regForm = document.getElementById('regForm');
-
-export function registrar(e){
+let localnick= 'asd';
+document.querySelector('button').addEventListener('click', async (e) => {
     e.preventDefault();
 
-    const username = regForm["username"].value
-    const nickname = regForm["nickname"].value
-    const tutor = regForm["tutor"].value
-    const age = regForm["age"].value
-    const password = regForm["password"].value
+    const username = regForm["username"]
+    const nickname = regForm["nickname"]
+    const tutor = regForm["tutor"]
+    const age = regForm["age"]
+    const password = regForm["password"]
 
-   
-    registerUser(username, nickname, tutor, age, password);
-}
+    const status = await firebase.registerUser(username.value, nickname.value, tutor.value, age.value, password.value);
+    if (status.statusCode == 500) {
+        localnick = nickname.value
+        regForm.reset();
+        alert("Aprendiz de guardion espacial registrado con exito")
+
+    }else {
+        alert("Error")
+        console.log(statusCode)
+    }
+})
 
 
-export function loginView() {
+document.getElementById('volver').addEventListener('click', () => {
     var Div = window.parent.document.querySelector('iframe');
     Div.setAttribute("src", "./login.html")
-}
 
-
-    // const fecha = new Date();
-    // const horaActual = fecha.toLocaleString('es-ES', { timeZone: 'UTC', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).replace(',', '');
-    // console.log(horaActual);
-
+})

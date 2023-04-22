@@ -95,12 +95,12 @@
             cursor: pointer;
         }
 
-        .social {
+        .volver {
             margin-top: 10px;
             display: flex;
         }
 
-        .social div {
+        .volver div {
             background: red;
             width: 100%;
             border-radius: 3px;
@@ -113,11 +113,11 @@
             border-radius: 5px;
         }
 
-        .social div:hover {
+        .volver div:hover {
             background-color: rgba(255, 255, 255, 0.47);
         }
 
-        .social i {
+        .volver i {
             margin-right: 4px;
         }
     </style>
@@ -141,22 +141,10 @@
         <input type="password" placeholder="Repetir Contraseña" id="password1">
 
         <button>Registrar</button>
-        <div class="social" id="volver">
+        <div class="volver" id="volver">
             <div id="volver"><i class="fab fa-google"></i> Volver</div>
         </div>
-
-        <script type="module">
-            import * as registry from "./registry.js"
-            window.addEventListener('load', function () {
-                document.getElementById('volver').addEventListener('click', function () {
-                    registry.loginView();
-                });
-                document.querySelector('button').addEventListener('click', (e) => {
-                    registry.registrar(e);
-                });
-            });
-        </script>
-
+        <script type="module" src="registry.js"></script>
     </form>
 </body>
 
