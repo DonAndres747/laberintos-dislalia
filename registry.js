@@ -1,7 +1,7 @@
-import firebase from './firebase.js'
+import firebase from './back/firebase.js'
 
 const regForm = document.getElementById('regForm');
-let localnick= 'asd';
+
 document.querySelector('button').addEventListener('click', async (e) => {
     e.preventDefault();
 
@@ -13,11 +13,11 @@ document.querySelector('button').addEventListener('click', async (e) => {
 
     const status = await firebase.registerUser(username.value, nickname.value, tutor.value, age.value, password.value);
     if (status.statusCode == 500) {
-        localnick = nickname.value
+        localStorage.setItem('localnick', nickname.value)
         regForm.reset();
-        alert("Aprendiz de guardion espacial registrado con exito")
-
-    }else {
+        window.parent.document.querySelector('a-scene').setAttribute('style', 'z-index = 1')
+        window.parent.document.querySelector('iframe').remove()
+    } else {
         alert("Error")
         console.log(statusCode)
     }
@@ -29,3 +29,4 @@ document.getElementById('volver').addEventListener('click', () => {
     Div.setAttribute("src", "./login.html")
 
 })
+

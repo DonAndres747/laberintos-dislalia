@@ -63,6 +63,7 @@ AFRAME.registerComponent('collider', {
 
 function empezar() {
    var player = document.querySelector("#player");
+   console.log("localnick",localStorage.getItem('localnick'))
    player.setAttribute("position", "0 0 -1");
    var luz = document.querySelector("#luz");
    luz.setAttribute("light", "intensity: 1");

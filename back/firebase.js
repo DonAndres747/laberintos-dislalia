@@ -18,7 +18,6 @@ let date = new Date()
 let day = date.getDate()
 let month = date.getMonth() + 1
 let year = date.getFullYear()
-let statusCode
 const registerUser = async (username, nickname, tutor, age, password, password2) => {
     const documentRef = doc(db, "Users", nickname);
 
