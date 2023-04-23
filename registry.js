@@ -18,7 +18,7 @@ document.querySelector('button').addEventListener('click', async (e) => {
         localStorage.setItem('localnick', nickname.value)
         regForm.reset();
         window.parent.document.querySelector('a-scene').removeAttribute('style')
-        window.parent.document.querySelector('iframe').remove()
+        window.parent.document.querySelector('div').remove()
     } else if (status.statusCode == 1062) {
         firebase.userTaked(nickname)
     }

@@ -10,6 +10,7 @@
 
 localStorage.clear();
 
+
 AFRAME.registerComponent('collider', {
    init: function () {
       this.el.addEventListener('collide', function (e) {
@@ -89,7 +90,7 @@ function mal(opcion1, opcion2, nMuro, sceneEl) {
    let muro = document.querySelector("#muro" + nMuro);
    muro.parentNode.removeChild(muro);
 
-   console.log('opcion1', opcion1)
+   // console.log('opcion1', opcion1)
    let opcCorrect = sceneEl.querySelector("#" + opcion1 + "Opc");
    opcCorrect.parentNode.removeChild(opcCorrect);
 
@@ -141,7 +142,7 @@ function newfrase(pst, src, width, height, rt) {
    nuevaFrase.setAttribute('width', width)
    nuevaFrase.setAttribute('height', height)
    nuevaFrase.setAttribute('rotation', (rt == null ? '0 0 0' : rt));
-   console.log('rt', rt)
+   // console.log('rt', rt)
 
    sceneEl.appendChild(nuevaFrase);
 
@@ -153,7 +154,7 @@ function newfrase(pst, src, width, height, rt) {
 function finalScore() {
    const puntuacion = document.querySelector('#score');
    const puntuacion1 = document.querySelector('#score1');
-   console.log(contador)
+   // console.log(contador)
 
    puntuacion.setAttribute('visible', 'true');
    puntuacion1.setAttribute('visible', 'true');
@@ -166,3 +167,4 @@ function finalScore() {
       puntuacion1.setAttribute('visible', 'false');
    }, 5000);
 }
+

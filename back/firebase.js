@@ -24,7 +24,6 @@ function validateFields(inputs, disabled) {
     inputs.forEach(input => {
 
         input.addEventListener("blur", (e) => {
-            console.log(input.value);
             if (input.value == "") {
                 input.setAttribute("style", "  box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.01), 0px 0px 8px #E55451");
                 disabled == true ? disableButton() : "";
@@ -121,7 +120,7 @@ const registerUser = async (username, nickname, tutor, age, password, repPass) =
             return {
                 statusCode: 8008
             }
-        }else{
+        } else {
 
         }
     } catch (error) {
