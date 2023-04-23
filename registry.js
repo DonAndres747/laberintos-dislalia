@@ -17,7 +17,6 @@ document.querySelector('button').addEventListener('click', async (e) => {
     if (status.statusCode == 500) {
         localStorage.setItem('localnick', nickname.value)
         regForm.reset();
-        window.parent.document.querySelector('iframe').srcdoc = 'login.html';
         window.parent.document.querySelector('a-scene').removeAttribute('style')
         window.parent.document.querySelector('iframe').remove()
     } else if (status.statusCode == 1062) {
