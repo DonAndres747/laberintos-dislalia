@@ -18,6 +18,7 @@
             padding: 0;
             margin: 0;
             box-sizing: border-box;
+
         }
 
 
@@ -77,6 +78,8 @@
             margin-top: 8px;
             font-size: 14px;
             font-weight: 300;
+            border: #080710;
+            border-width: 15px;
         }
 
         ::placeholder {
@@ -93,6 +96,12 @@
             font-weight: 600;
             border-radius: 5px;
             cursor: pointer;
+        }
+
+        button.disabled1 {
+            background-color: lightgray;
+            color: #1c1c1c;
+            cursor: not-allowed;
         }
 
         .volver {
@@ -120,6 +129,11 @@
         .volver i {
             margin-right: 4px;
         }
+
+        div p{
+            color:red;
+            font-size: small;
+        }
     </style>
 </head>
 
@@ -131,6 +145,7 @@
         <input type="text" placeholder="Nombre y Apellido" id="username">
 
         <input type="text" placeholder="Nickname" id="nickname">
+        <div id="nickPassAlert"></div>
 
         <input type="text" placeholder="Tutor" id="tutor">
 
@@ -138,11 +153,12 @@
 
         <input type="password" placeholder="Contraseña" id="password">
 
-        <input type="password" placeholder="Repetir Contraseña" id="password1">
+        <input type="password" placeholder="Repetir Contraseña" id="repPass">
+        <div id="repPassAlert"></div>
 
         <button>Registrar</button>
         <div class="volver" id="volver">
-            <div id="volver"><i class="fab fa-google"></i> Volver</div>
+            <div id="volver"><i class="fab fa-google"></i>Volver</div>
         </div>
         <script type="module" src="registry.js"></script>
     </form>
