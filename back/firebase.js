@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDoc, addDoc, collection } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCn_U5Y7TvxAoJGh_fhXUMC7PgX89co_R8",
@@ -18,6 +18,8 @@ let date = new Date()
 let day = date.getDate()
 let month = date.getMonth() + 1
 let year = date.getFullYear()
+let hour = date.getHours()
+let minutes = date.getMinutes()
 
 function validateFields(inputs, disabled) {
 
@@ -132,7 +134,20 @@ const registerUser = async (username, nickname, tutor, age, password, repPass) =
 }
 
 
+
+const registerUserScore = async (nickname, Score) => {
+    // const documentRef = doc(db, "UserScores", nickname);
+
+    const docRef = await addDoc(collection(db, "UserScores"), {
+        nickname,
+        Score,
+        Date: `${day}/0${month}/${year}-${hour}:${minutes}`
+    });
+}
+
+
+
 export default {
-    registerUser, validateFields, passNotMatch, userTaked
+    registerUser, validateFields, passNotMatch, userTaked, registerUserScore
 }
 

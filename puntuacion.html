@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puntuacion</title>
+
+    <!-- otras etiquetas de cabeza... -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+    <!--Stylesheet-->
+    <style media="screen">
+        *,
+        *:before,
+        *:after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+
+        }
+
+
+        .background {
+            width: 430px;
+            height: 520px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+        }
+
+        .background .shape {
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            border-radius: 50%;
+        }
+
+
+        form {
+            height: 560px;
+            width: 400px;
+            background-color: rgba(4, 124, 4, 0.322);
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            padding: 35px 35px;
+        }
+
+        form * {
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            outline: none;
+            border: none;
+        }
+
+        form h3 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+        }
+
+
+        input {
+            display: block;
+            height: 45px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.07);
+            border-radius: 3px;
+            padding: 0 10px;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 300;
+            border: #080710;
+            border-width: 15px;
+        }
+
+        ::placeholder {
+            color: #e5e5e5;
+        }
+
+        button {
+            margin-top: 18px;
+            width: 100%;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button.disabled1 {
+            background-color: lightgray;
+            color: #1c1c1c;
+            cursor: not-allowed;
+        }
+
+        .volver {
+            margin-top: 10px;
+            display: flex;
+        }
+
+        .volver div {
+            background: red;
+            width: 100%;
+            border-radius: 3px;
+            padding: 15px 0;
+            background-color: rgba(255, 255, 255, 0.27);
+            color: #eaf0fb;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+        }
+
+        .volver div:hover {
+            background-color: rgba(255, 255, 255, 0.47);
+        }
+
+        .volver i {
+            margin-right: 4px;
+        }
+
+        div p{
+            color:red;
+            font-size: small;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="regForm">
+        <h3>Registro</h3>
+
+
+        <input type="text" placeholder="Nombre y Apellido" id="username">
+
+        <input type="text" placeholder="Nickname" id="nickname">
+
+
+
+        <button>Reiniciar</button>
+        <!-- <div class="volver" id="volver">
+            <div id="volver"><i class="fab fa-google"></i>Volver</div>
+        </div> -->
+        <script type="module" src="puntuacion.js"></script>
+    </form>
+</body>
+
+</html>
