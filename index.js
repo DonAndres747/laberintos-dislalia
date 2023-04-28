@@ -165,6 +165,45 @@ function finalScore() {
    setTimeout(() => {
       puntuacion.setAttribute('visible', 'false');
       puntuacion1.setAttribute('visible', 'false');
+      puntuation();
+
    }, 5000);
 }
 
+
+
+function puntuation() {
+   // const body = document.querySelector("body");
+   const sceneEl = document.querySelector('a-scene');
+   // sceneEl.setAttribute('style', "z-index:-1");
+
+   const nuevoBox = document.createElement('div');
+   nuevoBox.setAttribute('style', "background-color: transparent; width: 100%; height: 100%; align-items: center; display: flex; justify-content: center;")
+
+   const nuevoBox2 = document.createElement('div');
+   nuevoBox2.setAttribute('id', "menuContainer")
+   nuevoBox2.setAttribute('class', "menuContainer");
+   nuevoBox2.setAttribute('style', "width: 100%; height: 100%; align-items: center; display: flex; justify-content: center; border-radius: 10%;z-index:1");
+
+   const nuevoFrame = document.createElement('iframe')
+   nuevoFrame.setAttribute('src', "./login.html")
+   // nuevoFrame.setAttribute('style', "z-index:1")
+   nuevoFrame.setAttribute('id', "iframe")
+   nuevoFrame.setAttribute('width', "100%")
+   nuevoFrame.setAttribute('height', "100%")
+   nuevoFrame.setAttribute('scrolling', "no")
+   nuevoFrame.setAttribute('frameborder', "0")
+   nuevoFrame.setAttribute('marginheight', "0")
+   nuevoFrame.setAttribute('marginwidth', "0")
+   nuevoFrame.setAttribute('allow', "fullscreen; autoplay; encrypted-media; picture-in-picture; allow-forms; allow-scripts;")
+
+
+
+   nuevoBox2.appendChild(nuevoFrame);
+   nuevoBox.appendChild(nuevoBox2);
+   sceneEl.appendChild(nuevoBox);
+
+   var event = document.createEvent('KeyboardEvent');
+   event.initKeyboardEvent('keydown', true, true, window, false, false, false, false, 20, 0);
+   document.dispatchEvent(event);
+}  
