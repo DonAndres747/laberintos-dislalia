@@ -38,8 +38,8 @@
 
 
         form {
-            height: 560px;
-            width: 400px;
+            height: auto;
+            width: 57%;
             background-color: rgba(4, 124, 4, 0.322);
             position: absolute;
             transform: translate(-50%, -50%);
@@ -49,7 +49,7 @@
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-            padding: 35px 35px;
+            padding: 25px 25px;
         }
 
         form * {
@@ -65,26 +65,48 @@
             font-weight: 500;
             line-height: 42px;
             text-align: center;
+            margin-bottom: 5px;
         }
 
+        div {
+            display: flex;
+            flex-direction: row;
+        }
 
         input {
             display: block;
             height: 45px;
-            width: 100%;
+            width: 95%;
             background-color: rgba(255, 255, 255, 0.07);
             border-radius: 3px;
             padding: 0 10px;
-            margin-top: 8px;
-            font-size: 14px;
-            font-weight: 300;
-            border: #080710;
-            border-width: 15px;
+            margin: 5px;
+            font-size: 20px;
         }
 
         ::placeholder {
-            color: #e5e5e5;
+            color: white;
         }
+
+        table {
+            width: 100%;
+            font-size: 25px;
+            text-align: center;
+        }
+
+        
+        table th {
+            background-color: rgba(4, 124, 4, 0.457);
+        }
+
+        table tr{
+            height: 40px;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: rgba(4, 124, 4, 0.37)
+        }
+
 
         button {
             margin-top: 18px;
@@ -97,56 +119,50 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
-        button.disabled1 {
-            background-color: lightgray;
-            color: #1c1c1c;
-            cursor: not-allowed;
-        }
-
-        .volver {
-            margin-top: 10px;
-            display: flex;
-        }
-
-        .volver div {
-            background: red;
-            width: 100%;
-            border-radius: 3px;
-            padding: 15px 0;
-            background-color: rgba(255, 255, 255, 0.27);
-            color: #eaf0fb;
-            text-align: center;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 5px;
-        }
-
-        .volver div:hover {
-            background-color: rgba(255, 255, 255, 0.47);
-        }
-
-        .volver i {
-            margin-right: 4px;
-        }
-
-        div p{
-            color:red;
-            font-size: small;
-        }
     </style>
 </head>
 
 <body>
     <form id="regForm">
-        <h3>Registro</h3>
+        <h3>Puntuaciones</h3>
 
+        <div>
+            <input type="text" placeholder="Tutor" id="tutor">
+            <input type="text" placeholder="Nickname" id="nickname">
+        </div>
 
-        <input type="text" placeholder="Nombre y Apellido" id="username">
-
-        <input type="text" placeholder="Nickname" id="nickname">
-
-
+        <table class="default">
+            <tr>
+                <th>Nickname</th>
+                <th>Tutor</th>
+                <th>Score</th>
+                <th>Fecha</th>
+            </tr>
+            <tr>
+                <td>supersuper</td>
+                <td>doctor</td>
+                <td>30</td>
+                <td>10/10/10-08:22</td>
+            </tr>
+            <tr>
+                <td>supersuper</td>
+                <td>doctor</td>
+                <td>25</td>
+                <td>10/10/10-08:22</td>
+            </tr>
+            <tr>
+                <td>supersuper</td>
+                <td>doctor</td>
+                <td>25</td>
+                <td>10/10/10-08:22</td>
+            </tr>
+            <tr>
+                <td>supersuper</td>
+                <td>doctor</td>
+                <td>25</td>
+                <td>10/10/10-08:22</td>
+            </tr>
+        </table>
 
         <button>Reiniciar</button>
         <script type="module" src="puntuacion.js"></script>

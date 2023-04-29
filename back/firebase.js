@@ -146,7 +146,7 @@ const registerUserScore = async (nickname, score) => {
 }
 
 const getUserScores = async (nickname) => {
-    const scores = query(collection(db, "UserScores"), where("nickname", "==", nickname), orderBy("date", "desc"), limit(5));
+    const scores = query(collection(db, "UserScores"), where("nickname", "==", nickname), orderBy("date", "desc"), limit(4));
     const querySnapshot = await getDocs(scores);
 
     return querySnapshot
