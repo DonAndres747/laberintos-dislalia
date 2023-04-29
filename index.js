@@ -173,9 +173,7 @@ function finalScore() {
 
 
 function puntuation() {
-   // const body = document.querySelector("body");
    const sceneEl = document.querySelector('a-scene');
-   // sceneEl.setAttribute('style', "z-index:-1");
 
    const nuevoBox = document.createElement('div');
    nuevoBox.setAttribute('style', "background-color: transparent; width: 100%; height: 100%; align-items: center; display: flex; justify-content: center;")
@@ -186,8 +184,7 @@ function puntuation() {
    nuevoBox2.setAttribute('style', "width: 100%; height: 100%; align-items: center; display: flex; justify-content: center; border-radius: 10%;z-index:1");
 
    const nuevoFrame = document.createElement('iframe')
-   nuevoFrame.setAttribute('src',`./puntuacion.html?score=${contador}&newScore=false`)
-   // nuevoFrame.setAttribute('style', "z-index:1")
+   nuevoFrame.setAttribute('src',`./puntuacion.html?score=${contador}&newScore=${false}`)
    nuevoFrame.setAttribute('id', "iframe")
    nuevoFrame.setAttribute('width', "100%")
    nuevoFrame.setAttribute('height', "100%")
@@ -203,7 +200,7 @@ function puntuation() {
    nuevoBox.appendChild(nuevoBox2);
    sceneEl.appendChild(nuevoBox);
 
-   var event = document.createEvent('KeyboardEvent');
-   event.initKeyboardEvent('keydown', true, true, window, false, false, false, false, 20, 0);
-   document.dispatchEvent(event);
+   // var event = document.createEvent('KeyboardEvent');
+   // event.initKeyboardEvent('keydown', true, true, window, false, false, false, false, 20, 0);
+   // document.dispatchEvent(event);
 }  

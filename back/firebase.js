@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import { getFirestore, doc, setDoc, getDoc, addDoc, collection } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDoc, getDocs, addDoc, collection, query, where, orderBy, limit, Timestamp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCn_U5Y7TvxAoJGh_fhXUMC7PgX89co_R8",
@@ -135,19 +135,26 @@ const registerUser = async (username, nickname, tutor, age, password, repPass) =
 
 
 
-const registerUserScore = async (nickname, Score) => {
+const registerUserScore = async (nickname, score) => {
     // const documentRef = doc(db, "UserScores", nickname);
-
+    const timestamp = new Date();
     const docRef = await addDoc(collection(db, "UserScores"), {
         nickname,
-        Score,
-        Date: `${day}/0${month}/${year}-${hour}:${minutes}`
+        score,
+        date: Timestamp.fromDate(timestamp),
     });
+}
+
+const getUserScores = async (nickname) => {
+    const scores = query(collection(db, "UserScores"), where("nickname", "==", nickname), orderBy("date", "desc"), limit(5));
+    const querySnapshot = await getDocs(scores);
+
+    return querySnapshot
 }
 
 
 
 export default {
-    registerUser, validateFields, passNotMatch, userTaked, registerUserScore
+    registerUser, validateFields, passNotMatch, userTaked, registerUserScore, getUserScores
 }
 
