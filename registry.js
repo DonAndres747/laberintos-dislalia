@@ -16,6 +16,7 @@ document.querySelector('button').addEventListener('click', async (e) => {
     const status = await firebase.registerUser(username.value, nickname.value, tutor.value, age.value, password.value, repPass.value);
     if (status.statusCode == 500) {
         localStorage.setItem('localnick', nickname.value)
+        localStorage.setItem('localtutor', tutor.value)
         regForm.reset();
         window.parent.document.querySelector('a-scene').removeAttribute('style')
         window.parent.document.querySelector('div').remove()

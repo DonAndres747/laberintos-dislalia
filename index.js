@@ -184,7 +184,7 @@ function puntuation() {
    nuevoBox2.setAttribute('style', "width: 100%; height: 100%; align-items: center; display: flex; justify-content: center; border-radius: 10%;z-index:1");
 
    const nuevoFrame = document.createElement('iframe')
-   nuevoFrame.setAttribute('src',`./puntuacion.html?score=${contador}&newScore=${false}`)
+   nuevoFrame.setAttribute('src',`./puntuacion.html?score=${contador}&newScore=${true}`)
    nuevoFrame.setAttribute('id', "iframe")
    nuevoFrame.setAttribute('width', "100%")
    nuevoFrame.setAttribute('height', "100%")

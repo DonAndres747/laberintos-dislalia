@@ -90,7 +90,7 @@
 
         table {
             width: 100%;
-            font-size: 25px;
+            font-size: 150%;
             text-align: center;
         }
 
@@ -103,7 +103,7 @@
             height: 40px;
         }
 
-        tbody tr:nth-child(odd) {
+        table tr:nth-child(odd) {
             background-color: rgba(4, 124, 4, 0.37)
         }
 
@@ -126,45 +126,14 @@
     <form id="regForm">
         <h3>Puntuaciones</h3>
 
-        <div>
-            <input type="text" placeholder="Tutor" id="tutor">
-            <input type="text" placeholder="Nickname" id="nickname">
+        <div id="search">
+            <input type="text" placeholder="Tutor" id="tutorInput">
+            <input type="text" placeholder="Nickname" id="nicknameInput">
         </div>
 
-        <table class="default">
-            <tr>
-                <th>Nickname</th>
-                <th>Tutor</th>
-                <th>Score</th>
-                <th>Fecha</th>
-            </tr>
-            <tr>
-                <td>supersuper</td>
-                <td>doctor</td>
-                <td>30</td>
-                <td>10/10/10-08:22</td>
-            </tr>
-            <tr>
-                <td>supersuper</td>
-                <td>doctor</td>
-                <td>25</td>
-                <td>10/10/10-08:22</td>
-            </tr>
-            <tr>
-                <td>supersuper</td>
-                <td>doctor</td>
-                <td>25</td>
-                <td>10/10/10-08:22</td>
-            </tr>
-            <tr>
-                <td>supersuper</td>
-                <td>doctor</td>
-                <td>25</td>
-                <td>10/10/10-08:22</td>
-            </tr>
-        </table>
+        <table></table>
 
-        <button>Reiniciar</button>
+        <button></button>
         <script type="module" src="puntuacion.js"></script>
     </form>
 </body>

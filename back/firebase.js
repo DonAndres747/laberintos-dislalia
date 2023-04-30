@@ -13,13 +13,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-let date = new Date()
-
-let day = date.getDate()
-let month = date.getMonth() + 1
-let year = date.getFullYear()
-let hour = date.getHours()
-let minutes = date.getMinutes()
+const timestamp = new Date();
 
 function validateFields(inputs, disabled) {
 
@@ -105,7 +99,7 @@ const registerUser = async (username, nickname, tutor, age, password, repPass) =
                 tutor,
                 age,
                 password,
-                registrationDate: `${day}/0${month}/${year}`
+                registrationDate: Timestamp.fromDate(timestamp),
             });
             console.log("Documento creado exitosamente.");
             return {
@@ -135,14 +129,15 @@ const registerUser = async (username, nickname, tutor, age, password, repPass) =
 
 
 
-const registerUserScore = async (nickname, score) => {
-    // const documentRef = doc(db, "UserScores", nickname);
-    const timestamp = new Date();
+const registerUserScore = async (nickname, score, tutor) => {
+    
     const docRef = await addDoc(collection(db, "UserScores"), {
         nickname,
         score,
+        tutor,
         date: Timestamp.fromDate(timestamp),
     });
+
 }
 
 const getUserScores = async (nickname) => {
@@ -152,9 +147,16 @@ const getUserScores = async (nickname) => {
     return querySnapshot
 }
 
+const getTutorsPlayers = async (tutorName) => {
+    const players = query(collection(db, "Users"), where("tutor", "==", tutorName), orderBy("registrationDate", "desc"));
+    const querySnapshot = await getDocs(players);
+
+    return querySnapshot
+}
+
 
 
 export default {
-    registerUser, validateFields, passNotMatch, userTaked, registerUserScore, getUserScores
+    registerUser, validateFields, passNotMatch, userTaked, registerUserScore, getUserScores, getTutorsPlayers
 }
 
