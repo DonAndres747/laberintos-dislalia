@@ -13,6 +13,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+
 const timestamp = new Date();
 
 function validateFields(inputs, disabled) {
@@ -101,9 +102,9 @@ const registerUser = async (username, nickname, tutor, age, password, repPass) =
                 password,
                 registrationDate: Timestamp.fromDate(timestamp),
             });
-            console.log("Documento creado exitosamente.");
+            localStorage.setItem('localnick', nickname)
+            localStorage.setItem('localtutor', tutor)
             return {
-                localUser: username,
                 statusCode: 500
             }
         }
@@ -129,34 +130,77 @@ const registerUser = async (username, nickname, tutor, age, password, repPass) =
 
 
 
-const registerUserScore = async (nickname, score, tutor) => {
-    
+const registerUserScore = async (score) => {
+
+    const playerNick = localStorage.getItem("localnick")
+    const localTutor = localStorage.getItem("localtutor")
+
     const docRef = await addDoc(collection(db, "UserScores"), {
-        nickname,
+        nickname: playerNick,
         score,
-        tutor,
+        tutor: localTutor,
         date: Timestamp.fromDate(timestamp),
     });
 
 }
 
-const getUserScores = async (nickname) => {
-    const scores = query(collection(db, "UserScores"), where("nickname", "==", nickname), orderBy("date", "desc"), limit(4));
+const getUserScores = async (user) => {
+
+    let playerNick = localStorage.getItem("localnick")
+    console.log('playerNick', playerNick)
+    playerNick = playerNick ? playerNick : user;
+
+    const scores = query(collection(db, "UserScores"), where("nickname", "==", playerNick), orderBy("date", "desc"), limit(4));
     const querySnapshot = await getDocs(scores);
 
     return querySnapshot
 }
 
-const getTutorsPlayers = async (tutorName) => {
-    const players = query(collection(db, "Users"), where("tutor", "==", tutorName), orderBy("registrationDate", "desc"));
+const getTutorsPlayers = async (tutor) => {
+
+    let localTutor = localStorage.getItem("localtutor")
+    console.log('localTutor', localTutor)
+    localTutor = localTutor ? localTutor : tutor;
+
+    const players = query(collection(db, "Users"), where("tutor", "==", localTutor), orderBy("registrationDate", "desc"));
     const querySnapshot = await getDocs(players);
 
     return querySnapshot
 }
 
+const authLogin = async (username, password) => {
+
+    try {
+        const documentRef = doc(db, "Users", username);
+        const docSnapshot = await getDoc(documentRef);
+        if (docSnapshot.exists()) {
+            const data = docSnapshot.data();
+            if (data.password === password) {
+                localStorage.setItem('localnick', data.nickname)
+                localStorage.setItem('localtutor', data.tutor)
+                return {
+                    status: 500
+                }
+            } else {
+                return {
+                    status: 406
+                }
+            }
+        } else {
+            return {
+                status: 406
+            }
+        }
+    } catch (error) {
+        return {
+            status: 406
+        }
+    }
+}
+
 
 
 export default {
-    registerUser, validateFields, passNotMatch, userTaked, registerUserScore, getUserScores, getTutorsPlayers
+    registerUser, validateFields, passNotMatch, userTaked, registerUserScore, getUserScores, getTutorsPlayers, authLogin
 }
 

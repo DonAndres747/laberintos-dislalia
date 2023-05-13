@@ -6,9 +6,6 @@ const newScore = params.get('newScore');
 const table = document.querySelector("table")
 var Div = window.parent.document.querySelector('iframe');
 
-const playerNick = localStorage.getItem("localnick")
-const localTutor = localStorage.getItem("localtutor")
-
 
 document.querySelector("button").innerText = (newScore == 'true' ? ("Reiniciar") : ("Volver"))
 document.querySelector("button").addEventListener("click", (e) => {
@@ -24,9 +21,9 @@ document.querySelector("button").addEventListener("click", (e) => {
 })
 
 newScore == 'true' ? (
-    firebase.registerUserScore(playerNick, score, localTutor),
+    firebase.registerUserScore(score),
     document.getElementById("search").setAttribute("style", "display:none"),
-    getPlayerScore(playerNick)
+    getPlayerScore()
 ) : console.log("noNewScore");
 
 document.getElementById("nicknameInput").addEventListener("blur", (e) => {
@@ -40,8 +37,9 @@ document.getElementById("tutorInput").addEventListener("blur", (e) => {
 })
 
 
-async function getPlayerScore(playerNick) {
-    const scores = await firebase.getUserScores(playerNick)
+async function getPlayerScore(provNick) {
+
+    const scores = await firebase.getUserScores(provNick)
 
     table.innerHTML = ""
     table.innerHTML += `<tr>
@@ -66,8 +64,8 @@ async function getPlayerScore(playerNick) {
     });
 }
 
-async function getTutorsPlayers(tutorName) {
-    const scores = await firebase.getTutorsPlayers(tutorName)
+async function getTutorsPlayers(provTutor) {
+    const scores = await firebase.getTutorsPlayers(provTutor)
 
     table.innerHTML = ""
     table.innerHTML += `<tr>

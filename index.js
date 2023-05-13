@@ -191,8 +191,7 @@ function puntuation() {
    nuevoFrame.setAttribute('scrolling', "no")
    nuevoFrame.setAttribute('frameborder', "0")
    nuevoFrame.setAttribute('marginheight', "0")
-   nuevoFrame.setAttribute('marginwidth', "0")
-   nuevoFrame.setAttribute('allow', "fullscreen; autoplay; encrypted-media; picture-in-picture; allow-forms; allow-scripts;")
+   nuevoFrame.setAttribute('marginwidth', "0") 
 
 
 
