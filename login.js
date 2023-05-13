@@ -29,7 +29,7 @@ document.querySelector("button").addEventListener("click", async (e) => {
     } else if (status.status == 406) {
 
         const button = document.querySelector("button")
-        button.setAttribute("style", "background-color:#fa1c16;font-size: 15px;color:white; height:58px")
+        button.setAttribute("style", "background-color:#f74f4a;font-size: 15px;color:white; height:58px")
         button.innerText = 'Nickname o contraseña invalidos'
         setTimeout(() => {
             button.removeAttribute("style")
