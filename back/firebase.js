@@ -147,7 +147,6 @@ const registerUserScore = async (score) => {
 const getUserScores = async (user) => {
 
     let playerNick = localStorage.getItem("localnick")
-    console.log('playerNick', playerNick)
     playerNick = playerNick ? playerNick : user;
 
     const scores = query(collection(db, "UserScores"), where("nickname", "==", playerNick), orderBy("date", "desc"), limit(4));
@@ -159,7 +158,6 @@ const getUserScores = async (user) => {
 const getTutorsPlayers = async (tutor) => {
 
     let localTutor = localStorage.getItem("localtutor")
-    console.log('localTutor', localTutor)
     localTutor = localTutor ? localTutor : tutor;
 
     const players = query(collection(db, "Users"), where("tutor", "==", localTutor), orderBy("registrationDate", "desc"));
