@@ -94,19 +94,24 @@
             text-align: center;
         }
 
-        
-        table th {
+
+        table thead {
             background-color: rgba(4, 124, 4, 0.457);
         }
 
-        table tr{
+        table tr {
             height: 40px;
         }
 
-        table tr:nth-child(odd) {
+        table tr:nth-child(even) {
             background-color: rgba(4, 124, 4, 0.37)
         }
 
+        @media (max-width: 768px) {
+            table {
+                font-size: 100%;
+            }
+        }
 
         button {
             margin-top: 18px;
@@ -124,8 +129,11 @@
 
 <body>
     <form id="regForm">
-        <h3>Puntuaciones</h3>
-
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 id="back" hidden>&lt;</h3>
+            <h3 id="title" style="flex-grow: 1; text-align: center;">Puntuaciones</h3>
+            <h3 id="next" hidden>&gt;</h3>
+          </div>
         <div id="search">
             <input type="text" placeholder="Tutor" id="tutorInput">
             <input type="text" placeholder="Nickname" id="nicknameInput">
