@@ -5,7 +5,6 @@ const score = params.get('score');
 const newScore = params.get('newScore');
 const table = document.querySelector("table")
 let start = 0
-let start2
 let proTutorL = ''
 var Div = window.parent.document.querySelector('iframe');
 
