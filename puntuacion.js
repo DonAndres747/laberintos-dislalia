@@ -122,7 +122,7 @@ async function getTutorsPlayers(provTutor) {
     table.appendChild(headerRow);
 
     let bodyrow = document.createElement("tbody")
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < data1.length; i++) {
         const data = data1[i];
         let row = addTutorRow(data);
         bodyrow.appendChild(row);
