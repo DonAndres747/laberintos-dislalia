@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(sort -rk5)",
+      "Bash(gltf-pipeline -i __TRACKED_VAR__/scene.gltf -o __TRACKED_VAR__/scene.glb)"
+    ]
+  }
+}

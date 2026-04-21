@@ -1,0 +1,116 @@
+*,
+*:before,
+*:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --form-bg: rgba(4, 124, 4, 0.322);
+    --form-bg-alt: rgba(4, 124, 4, 0.457);
+    --form-border: rgba(255, 255, 255, 0.1);
+    --form-shadow: rgba(8, 7, 16, 0.6);
+    --input-bg: rgba(255, 255, 255, 0.07);
+    --btn-secondary-bg: rgba(255, 255, 255, 0.27);
+    --btn-secondary-hover: rgba(255, 255, 255, 0.47);
+    --color-white: #ffffff;
+    --color-dark: #080710;
+    --color-placeholder: #e5e5e5;
+    --color-error: #f74f4a;
+}
+
+form {
+    background-color: var(--form-bg);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--form-border);
+    box-shadow: 0 0 40px var(--form-shadow);
+    padding: 35px;
+}
+
+form * {
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-white);
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+
+form h3 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+input {
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: var(--input-bg);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+::placeholder {
+    color: var(--color-placeholder);
+}
+
+button {
+    margin-top: 18px;
+    width: 100%;
+    background-color: var(--color-white);
+    color: var(--color-dark);
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.disabled1 {
+    background-color: lightgray;
+    color: #1c1c1c;
+    cursor: not-allowed;
+}
+
+.secondary-btn {
+    margin-top: 10px;
+    display: flex;
+}
+
+.secondary-btn div {
+    width: 100%;
+    border-radius: 5px;
+    padding: 15px 0;
+    background-color: var(--btn-secondary-bg);
+    color: #eaf0fb;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.secondary-btn div:hover {
+    background-color: var(--btn-secondary-hover);
+}
+
+div p {
+    color: var(--color-error);
+    font-size: small;
+}

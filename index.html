@@ -7,34 +7,89 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="//unpkg.com/aframe-physics-system@3.1.2/dist/aframe-physics-system.min.js"></script>
-    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
     <script src="https://unpkg.com/aframe-rounded"></script>
     <title>Prueba Dislalia</title>
     <script src="index.js"></script>
+    <style>
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            background: #0a0a1a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            gap: 20px;
+            transition: opacity 0.5s ease;
+        }
+        #loading-screen h2 { font-size: 1.8rem; margin: 0; letter-spacing: 2px; }
+        #loading-bar-wrap {
+            width: 300px;
+            height: 10px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        #loading-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, #1845ad, #23a2f6);
+            border-radius: 5px;
+            transition: width 0.2s ease;
+        }
+        #loading-pct { font-size: 0.9rem; opacity: 0.7; }
+
+        #score-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.75);
+            font-family: 'Arial', sans-serif;
+            gap: 16px;
+            animation: fadeIn 0.4s ease;
+            transition: opacity 0.5s ease;
+        }
+        #score-overlay h2 { font-size: 2.2rem; margin: 0; color: #FFD700; }
+        #score-overlay .label { font-size: 1.2rem; color: #ffffff; margin: 0; }
+        #score-overlay .value { font-size: 4rem; font-weight: bold; color: #FFD700; margin: 0; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
 
 </head>
 
 <body>
+    <div id="loading-screen">
+        <h2>Cargando...</h2>
+        <div id="loading-bar-wrap"><div id="loading-bar"></div></div>
+        <span id="loading-pct">0%</span>
+    </div>
+
     <!-- <audio src="./Resourses/Sounds/musica-fondo.mp3" id="mundoAudio"></audio> -->
 
-    <div
+    <div id="login-container"
         style="background-color: transparent; width: 100%; height: 100%; align-items: center; display: flex; justify-content: center;z-index: 1;">
         <!-- <div class="menuContainer"
             style="width: 100%; height: 100%; align-items: center; display: flex; justify-content: center; border-radius: 10%;"> -->
-        <iframe src="./login.html" id="iframe" width="100%" height="100%" scrolling="no" frameborder="0"
+        <iframe src="./pages/login.html" id="iframe" width="100%" height="100%" scrolling="no" frameborder="0"
             marginheight="0" marginwidth="0"></iframe>
         <!-- </div> -->
     </div>
-    <a-scene style="z-index: -1;" light="defaultLightsEnabled: true" inspector physics="restitution: 0;">
+    <a-scene style="z-index: -1;" light="defaultLightsEnabled: true" physics="restitution: 0;">
         <!--Recursos-->
 
 
 
-        <a-assets>
+        <a-assets timeout="45000">
             <!--Texturas-->
             <img src="Resourses/Environment/Empezar.png" id="start">
             <img src="Resourses/Environment/tapiztoy.jpg" id="Pared">
@@ -43,23 +98,22 @@
 
 
 
-            <asset-item id="woody" src="Resourses/Models/Woody/scene.gltf"></asset-item>
-            <asset-item id="bed" src="Resourses/Models/cama/scene.gltf"></asset-item>
-            <asset-item id="trash" src="Resourses/Models/decoration/scene.gltf"></asset-item>
-            <asset-item id="desktop" src="Resourses/Models/escritorio/scene.gltf"></asset-item>
-            <asset-item id="dino" src="Resourses/Models/dino/scene.gltf"></asset-item>
-            <asset-item id="dino" src="Resourses/Models/dino/scene.gltf"></asset-item>
-            <asset-item id="child" src="Resourses/Models/child/scene.gltf"></asset-item>
-            <asset-item id="toybox" src="Resourses/Models/toy box/scene.gltf"></asset-item>
+            <asset-item id="woody" src="Resourses/Models/Woody/scene.glb"></asset-item>
+            <asset-item id="bed" src="Resourses/Models/cama/scene.glb"></asset-item>
+            <asset-item id="trash" src="Resourses/Models/decoration/scene.glb"></asset-item>
+            <asset-item id="desktop" src="Resourses/Models/escritorio/scene.glb"></asset-item>
+            <asset-item id="dino" src="Resourses/Models/dino/scene.glb"></asset-item>
+            <asset-item id="child" src="Resourses/Models/child/scene.glb"></asset-item>
+            <asset-item id="toybox" src="Resourses/Models/toy box/scene.glb"></asset-item>
 
-            <asset-item id="dog" src="Resourses/Models/dog/scene.gltf"></asset-item>
-            <asset-item id="dog-m" src="Resourses/Models/dog-m/scene.gltf"></asset-item>
-            <asset-item id="alien" src="Resourses/Models/alien/scene.gltf"></asset-item>
-            <asset-item id="jessie" src="Resourses/Models/jessie/scene.gltf"></asset-item>
-            <asset-item id="head" src="Resourses/Models/potato/scene.gltf"></asset-item>
-            <asset-item id="carrito" src="Resourses/Models/cabeza-papa/scene.gltf"></asset-item>
-            <asset-item id="penguin" src="Resourses/Models/Pinguino/scene.gltf"></asset-item>
-            <asset-item id="buzz" src="Resourses/Models/buzz/scene.gltf"></asset-item>
+            <asset-item id="dog" src="Resourses/Models/dog/scene.glb"></asset-item>
+            <asset-item id="dog-m" src="Resourses/Models/dog-m/scene.glb"></asset-item>
+            <asset-item id="alien" src="Resourses/Models/alien/scene.glb"></asset-item>
+            <asset-item id="jessie" src="Resourses/Models/jessie/scene.glb"></asset-item>
+            <asset-item id="head" src="Resourses/Models/potato/scene.glb"></asset-item>
+            <asset-item id="carrito" src="Resourses/Models/cabeza-papa/scene.glb"></asset-item>
+            <asset-item id="penguin" src="Resourses/Models/Pinguino/scene.glb"></asset-item>
+            <asset-item id="buzz" src="Resourses/Models/buzz/scene.glb"></asset-item>
 
         </a-assets>
 
@@ -83,7 +137,7 @@
 
         <!--Models-->
         <a-entity gltf-model="#woody" scale="1.9 1.9 1.9" position="-3 0 -22"
-            onclick="newfrase('0.7 2 -22', 'Resourses/Environment/frases/fwoody.png', '4.5', '2.5')"
+            onclick="showPhrase('0.7 2 -22', 'Resourses/Environment/frases/fwoody.png', '4.5', '2.5')"
             static-body></a-entity>
         <a-entity gltf-model="#bed" scale="2.5 2.5 2.5" rotation="0 0 0" position="-10 0 -17.5" static-body>
         </a-entity>
@@ -92,43 +146,34 @@
         <a-entity gltf-model="#desktop" scale="0.6 0.6 0.6" rotation="0 270 0" position="-18 0 -17">
         </a-entity>
         <a-entity gltf-model="#dino" scale="0.1 0.1 0.1" rotation="0 -50 0" position="-11 2 -17"
-            onclick="newfrase('-11 2.8 -17', 'Resourses/Environment/frases/frase-rex.png', '2', '0.7', '0 -50 0')"
+            onclick="showPhrase('-11 2.8 -17', 'Resourses/Environment/frases/frase-rex.png', '2', '0.7', '0 -50 0')"
             static-body></a-entity>
-        <a-entity gltf-model="#buzz" scale="0.1 0.1 0.1" rotation="0 220 0" position="-17.5 0 -35.5" onclick="(()=>{
-                newfrase('-21 2 -35.5', 'Resourses/Environment/frases/frase-buzz.png', '4.5', '2.5', '0 160 0');
-                finalScore();
-            })()" static-body></a-entity>
+        <a-entity gltf-model="#buzz" scale="0.1 0.1 0.1" rotation="0 220 0" position="-17.5 0 -35.5"
+            onclick="showPhrase('-21 2 -35.5', 'Resourses/Environment/frases/frase-buzz.png', '4.5', '2.5', '0 160 0', finalScore)"
+            static-body></a-entity>
         <a-entity gltf-model="#child" scale="0.0026 0.0026 0.0026" rotation="0 90 0" position="-17 0 -54"
             static-body></a-entity>
         <a-entity gltf-model="#toybox" scale="0.04 0.032 0.042" rotation="0 180 0" position="-1.5 0 -54.5">
         </a-entity>
         <a-entity gltf-model="#dog-m" scale="0.14 0.14 0.14" rotation="0 60 0" position="-28.5 0 -3"
-            onclick="newfrase('-28.5 2 -3', 'Resourses/Environment/frases/frase-perro.png', '3', '1', '0 60 0')"
+            onclick="showPhrase('-28.5 2 -3', 'Resourses/Environment/frases/frase-perro.png', '3', '1', '0 60 0')"
             static-body></a-entity>
         <a-entity gltf-model="#alien" scale="0.4 0.4 0.4" rotation="0 270 0" position="-15.5 1 -3"
-            onclick="newfrase('-15.5 2 -3', 'Resourses/Environment/frases/frase-alien.png', '3', '1', '0 270 0')"
+            onclick="showPhrase('-15.5 2 -3', 'Resourses/Environment/frases/frase-alien.png', '3', '1', '0 270 0')"
             static-body></a-entity>
         <a-entity gltf-model="#jessie" scale="1.4 1.4 1.4" rotation="0 60 0" position="-28.9 0 -38"
-            onclick="newfrase('-28 3 -37.5', 'Resourses/Environment/frases/frase-jessie.png', '3', '1', '0 60 0')"
+            onclick="showPhrase('-28 3 -37.5', 'Resourses/Environment/frases/frase-jessie.png', '3', '1', '0 60 0')"
             static-body></a-entity>
         <a-entity gltf-model="#head" scale="0.05 0.05 0.05" rotation="0 -120 0" position="0 0.1 -28.4"
             static-body></a-entity>
         <a-entity gltf-model="#carrito" scale="0.8 0.8 0.8" rotation="0 0 0" position=" 12.4 0.2 -23"
-            onclick="newfrase('12.4 2.5 -23', 'Resourses/Environment/frases/frase-carro.png', '3', '1', '0 180 0')"
+            onclick="showPhrase('12.4 2.5 -23', 'Resourses/Environment/frases/frase-carro.png', '3', '1', '0 180 0')"
             static-body></a-entity>
         <a-entity gltf-model="#penguin" scale="0.07 0.07 0.07" rotation="0 0 0" position=" 12.2 0 -38"
-            onclick="newfrase('12.2 2.5 -38', 'Resourses/Environment/frases/frase-pingu.png', '3', '1')"
+            onclick="showPhrase('12.2 2.5 -38', 'Resourses/Environment/frases/frase-pingu.png', '3', '1')"
             static-body></a-entity>
 
 
-        <!-- Puntuacion Final-->
-        <!-- font:./Resourses/Fonts/bloodlust-msdf.json; fuente-->
-        <a-plane id="score" visible="false" position="-21.9 1.5 -35.85" rotation='0 160 0' color="transparent" width="4"
-            height="3" material="alphaTest:100;" text="color:yellow; wrapCount: 30; value: tu puntuacion es:;">
-        </a-plane>
-        <a-plane id="score1" visible="false" position="-23.62 1.5 -36.49" rotation='0 160 0' color="transparent"
-            width="4" height="3" material="alphaTest:100;" text="color:yellow; wrapCount: 30; value: 100.;">
-        </a-plane>
 
         <!--Menu-->
         <a-box src="#Pared" width="8" height="7" depth="1" position="0 1.5 81" static-body></a-box>
@@ -137,14 +182,14 @@
             static-body></a-box>
         <a-box src="#Pared" rotation="0 90 0" width="8" height="7" depth="1" position="-4.5 1.5 76.5"
             static-body></a-box>
-        <a-plane onclick="empezar()" position="0.2 2.3 74" src="#start" depth="0.1" width="4.5" height="2.5"></a-plane>
+        <a-plane id="start-plane" onclick="empezar()" position="0.2 2.3 74" src="#start" depth="0.1" width="4.5" height="2.5"></a-plane>
 
         <!--Piso y techo-->
         <a-box src="#Techo" material="repeat: 20 70;color:#fafafa;metalness:0.2;roughness:0.1;" height="1" width="100"
             depth="200" position="0 6 0"></a-box>
         <a-box src="#Piso" rotation="0 90 0" material="repeat: 200 200;color:#fafafa;metalness:0.2;roughness:0.1;"
             color="grey" height="1" width="400" depth="400" static-body position="0 -0.5 0"></a-box>
-        <a-entity id="luz" light="type: ambient; color: #white; intensity: 1"></a-entity>
+        <a-entity id="luz" light="type: ambient; color: white; intensity: 1"></a-entity>
 
         <!--Paredes inicio-->
         <a-box src="#Pared" width="21" height="7.5" depth="0.2" rotation="0 90 0" position="2 1.5 -7.5"
@@ -374,6 +419,13 @@
                 <a-entity cursor position="0 0 -0.5" geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.016"
                     material="opacity:0.5;shader:flat;transparent:true;color:#ff9" scale="0.8 0.8 0.8" raycaster>
                 </a-entity>
+                <a-text id="hud-counter" value="0 / 15"
+                    position="-0.28 -0.38 -0.6"
+                    color="white"
+                    width="0.8"
+                    align="left"
+                    visible="false">
+                </a-text>
             </a-entity>
         </a-entity>
     </a-scene>

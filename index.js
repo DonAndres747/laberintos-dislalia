@@ -1,201 +1,217 @@
-// AFRAME.registerComponent('wasd-movement', {
-//    init: function () {
-//      this.el.addEventListener('componentchanged', function (evt) {
-//        if (evt.detail.name === 'position') {
-//          console.log("Position: ", this.getAttribute('position'));
-//        }
-//      });
-//    }
-//  });
+// Constants inline — index.js must stay a plain script (not a module)
+// so AFRAME.registerComponent runs synchronously before the scene initializes.
+const PHRASE_DISPLAY_MS = 5000;
+const SCORE_DISPLAY_MS = 5000;
+const TOTAL_QUESTIONS = 15;
 
 localStorage.clear();
 
+// Loading screen — animates the bar smoothly while waiting for scene.loaded.
+// The fake animation avoids the "stuck at 0%" problem since A-Frame 0.9.x
+// doesn't expose a progress event on <a-scene>. The bar reaches ~90% on its own
+// and jumps to 100% when all assets are actually done.
+window.addEventListener('load', () => {
+    const bar = document.getElementById('loading-bar');
+    const pct = document.getElementById('loading-pct');
+    const screen = document.getElementById('loading-screen');
+    const scene = document.querySelector('a-scene');
+    let current = 0;
+    let animId;
+
+    const tick = () => {
+        if (current < 90) {
+            current += (90 - current) * 0.015;
+            bar.style.width = current.toFixed(1) + '%';
+            pct.textContent = Math.round(current) + '%';
+            animId = requestAnimationFrame(tick);
+        }
+    };
+
+    const finish = () => {
+        cancelAnimationFrame(animId);
+        bar.style.width = '100%';
+        pct.textContent = '100%';
+
+        // Pre-compile all shaders and upload textures to GPU now,
+        // while the loading screen is still visible, so the first camera
+        // turn doesn't stutter.
+        if (scene.renderer && scene.camera) {
+            scene.renderer.compile(scene.object3D, scene.camera);
+        }
+
+        screen.style.opacity = '0';
+        setTimeout(() => screen.remove(), 500);
+    };
+
+    if (scene.hasLoaded) { finish(); return; }
+    requestAnimationFrame(tick);
+    scene.addEventListener('loaded', finish);
+});
 
 AFRAME.registerComponent('collider', {
-   init: function () {
-      this.el.addEventListener('collide', function (e) {
+    init: function () {
+        this.el.addEventListener('collide', function (e) {
+            const triggerEl = e.detail.body.el;
+            if (triggerEl.id !== 'trigger') return;
 
-         const idTrigger = e.detail.body.el.id;
-         const trg = e.detail.body.el; // o seleccione el elemento que tenga el ancho que desea obtener
-         const trgAudio = trg.getAttribute('audio');
-         const trgOpc1 = trg.getAttribute('opc1');
-         const trgOpc2 = trg.getAttribute('opc2');
-         const post1 = trg.getAttribute('post1');
-         const post2 = trg.getAttribute('post2');
-         let rt = trg.getAttribute('rotation');
-         const rt2 = trg.getAttribute('rt');
-         const src1 = trg.getAttribute('src1');
-         const src2 = trg.getAttribute('src2');
-         const depth = trg.getAttribute('depth1');
-         const nMuro = trg.getAttribute('nMuro');
-         const rspTyp1 = trg.getAttribute('rspTyp1');
-         const rspTyp2 = trg.getAttribute('rspTyp2');
+            const audio    = triggerEl.getAttribute('audio');
+            const opc1     = triggerEl.getAttribute('opc1');
+            const opc2     = triggerEl.getAttribute('opc2');
+            const pos1     = triggerEl.getAttribute('post1');
+            const pos2     = triggerEl.getAttribute('post2');
+            const posW     = triggerEl.getAttribute('postW');
+            const rotation = triggerEl.getAttribute('rt') ?? triggerEl.getAttribute('rotation');
+            const rotW     = triggerEl.getAttribute('rtW');
+            const src1     = triggerEl.getAttribute('src1');
+            const src2     = triggerEl.getAttribute('src2');
+            const depth    = triggerEl.getAttribute('depth1');
+            const depthW   = triggerEl.getAttribute('depthW');
+            const wallId   = triggerEl.getAttribute('nMuro');
+            const rspType1 = triggerEl.getAttribute('rspTyp1');
+            const rspType2 = triggerEl.getAttribute('rspTyp2');
+            const widthW   = triggerEl.getAttribute('widthW');
+            const heightW  = triggerEl.getAttribute('heightW');
 
-         //Wall 
-         const postW = trg.getAttribute('postW');
-         const rotationW = trg.getAttribute('rtW');
-         const depthW = trg.getAttribute('depthW');
-         const widthW = trg.getAttribute('widthW');
-         const heightW = trg.getAttribute('heightW');
+            createOption(opc1, opc2, pos1, rotation, src1, depth, wallId, rspType1);
+            createOption(opc1, opc2, pos2, rotation, src2, depth, wallId, rspType2);
+            createWall(wallId, posW, rotW ?? rotation, depthW, widthW, heightW);
 
-         rt = (rt2 == null ? rt : rt2)
-
-
-         const triggerArgs = {
-            'trigger': [trgAudio, trgOpc1, trgOpc2, post1, post2, postW, rt, rotationW, src1, src2, depth, depthW, nMuro, rspTyp1, rspTyp2, widthW, heightW]
-         };
-         const triggers = {
-
-            'trigger': (trgAudio, trgOpc1, trgOpc2, post1, post2, postW, rt, rotationW, src1, src2, depth, depthW, nMuro, rspTyp1, rspTyp2, widthW, heightW) => {
-
-               newOpci(trgOpc1, trgOpc2, post1, rt, src1, depth, nMuro, rspTyp1)
-               newOpci(trgOpc1, trgOpc2, post2, rt, src2, depth, nMuro, rspTyp2)
-               newWall(nMuro, postW, (rotationW == null ? rt : rotationW), depthW, widthW, heightW);
-               console.log(trgAudio)
-               let audio = document.querySelector("#" + trgAudio);
-               audio.play();
-               e.detail.body.el.parentNode.removeChild(e.detail.body.el);
-            }
-
-         }
-         triggers[idTrigger] ? triggers[idTrigger](...triggerArgs[idTrigger]) : null;
-      });
-   }
-})
+            document.querySelector("#" + audio).play();
+            triggerEl.parentNode.removeChild(triggerEl);
+        });
+    }
+});
 
 function empezar() {
-   var player = document.querySelector("#player");
-   player.setAttribute("position", "0 0 -1");
-   var luz = document.querySelector("#luz");
-   luz.setAttribute("light", "intensity: 1");
+    document.querySelector('#start-plane').removeAttribute('onclick');
+    document.querySelector("#player").setAttribute("position", "0 0 -1");
+    document.querySelector("#luz").setAttribute("light", "intensity: 1");
+    document.querySelector("#hud-counter").setAttribute("visible", "true");
 }
 
-let contador = 0;
+let score = 0;
+let questionsAnswered = 0;
+let correctAnswers = 0;
 
-function bien(opcion1, opcion2, nMuro, sceneEl) {
-   let muro = document.querySelector("#muro" + nMuro);
-   muro.parentNode.removeChild(muro);
-
-   let opcCorrect = sceneEl.querySelector("#" + opcion1 + "Opc");
-   opcCorrect.parentNode.removeChild(opcCorrect);
-
-   let opcBad = document.querySelector("#" + opcion2 + "Opc")
-   opcBad.parentNode.removeChild(opcBad);
-   contador += 10;
-   console.log(contador)
+function updateHud() {
+    document.querySelector('#hud-counter').setAttribute('text', 'value', `${questionsAnswered} / ${TOTAL_QUESTIONS}`);
 }
 
-function mal(opcion1, opcion2, nMuro, sceneEl) {
-   let muro = document.querySelector("#muro" + nMuro);
-   muro.parentNode.removeChild(muro);
-
-   let opcCorrect = sceneEl.querySelector("#" + opcion1 + "Opc");
-   opcCorrect.parentNode.removeChild(opcCorrect);
-
-   let opcBad = document.querySelector("#" + opcion2 + "Opc")
-   opcBad.parentNode.removeChild(opcBad);
+function onCorrect(opc1, opc2, wallId, sceneEl) {
+    document.querySelector("#muro" + wallId).remove();
+    sceneEl.querySelector("#" + opc1 + "Opc").remove();
+    document.querySelector("#" + opc2 + "Opc").remove();
+    score += 10;
+    questionsAnswered++;
+    correctAnswers++;
+    updateHud();
 }
 
-function newOpci(trgOpc1, trgOpc2, position, rotation, src, depth, nMuro, rspTyp) {
-   const nuevoBox = document.createElement('a-box');
-   const sceneEl = document.querySelector('a-scene');
-
-   nuevoBox.setAttribute('id', (rspTyp == 'bien' ? trgOpc1 : trgOpc2) + "Opc");
-   nuevoBox.setAttribute('visible', 'true');
-   nuevoBox.setAttribute('position', position);
-   nuevoBox.setAttribute('rotation', rotation);
-   nuevoBox.setAttribute('src', src);
-   nuevoBox.setAttribute('depth', depth);
-   nuevoBox.onclick = () => {
-      rspTyp == 'bien' ? bien(trgOpc1, trgOpc2, nMuro, sceneEl) : mal(trgOpc1, trgOpc2, nMuro, sceneEl)
-   };
-   sceneEl.appendChild(nuevoBox);
+function onWrong(opc1, opc2, wallId, sceneEl) {
+    document.querySelector("#muro" + wallId).remove();
+    sceneEl.querySelector("#" + opc1 + "Opc").remove();
+    document.querySelector("#" + opc2 + "Opc").remove();
+    questionsAnswered++;
+    updateHud();
 }
 
-function newWall(nMuro, position, rotation, depth, width, height) {
-   const nuevoBox = document.createElement('a-box');
-   const sceneEl = document.querySelector('a-scene');
+function createOption(opc1, opc2, position, rotation, src, depth, wallId, responseType) {
+    const sceneEl = document.querySelector('a-scene');
+    const box = document.createElement('a-box');
 
-   nuevoBox.setAttribute('id', "muro" + nMuro);
-   nuevoBox.setAttribute('visible', 'false');
-   nuevoBox.setAttribute('position', position);
-   nuevoBox.setAttribute('rotation', rotation);
-   nuevoBox.setAttribute('depth', (depth == null ? '0.1' : depth));
-   nuevoBox.setAttribute('width', (width == null ? '6' : width))
-   nuevoBox.setAttribute('height', (height == null ? '2' : height))
-   nuevoBox.setAttribute('static-body', '')
-
-   sceneEl.appendChild(nuevoBox);
+    box.setAttribute('id', (responseType === 'bien' ? opc1 : opc2) + "Opc");
+    box.setAttribute('visible', 'true');
+    box.setAttribute('position', position);
+    box.setAttribute('rotation', rotation);
+    box.setAttribute('src', src);
+    box.setAttribute('depth', depth);
+    box.onclick = () => {
+        responseType === 'bien'
+            ? onCorrect(opc1, opc2, wallId, sceneEl)
+            : onWrong(opc1, opc2, wallId, sceneEl);
+    };
+    sceneEl.appendChild(box);
 }
 
-function newfrase(pst, src, width, height, rt) {
-   const nuevaFrase = document.createElement('a-plane');
-   const sceneEl = document.querySelector('a-scene');
+function createWall(wallId, position, rotation, depth, width, height) {
+    const sceneEl = document.querySelector('a-scene');
+    const wall = document.createElement('a-box');
 
-   nuevaFrase.setAttribute('id', 'frase')
-   nuevaFrase.setAttribute('position', pst)
-   nuevaFrase.setAttribute('src', src)
-   nuevaFrase.setAttribute('material', "transparent:true")
-   nuevaFrase.setAttribute('depth', '0.1')
-   nuevaFrase.setAttribute('width', width)
-   nuevaFrase.setAttribute('height', height)
-   nuevaFrase.setAttribute('rotation', (rt == null ? '0 0 0' : rt));
+    wall.setAttribute('id', "muro" + wallId);
+    wall.setAttribute('visible', 'false');
+    wall.setAttribute('position', position);
+    wall.setAttribute('rotation', rotation);
+    wall.setAttribute('depth', depth ?? '0.1');
+    wall.setAttribute('width', width ?? '6');
+    wall.setAttribute('height', height ?? '2');
+    wall.setAttribute('static-body', '');
+    sceneEl.appendChild(wall);
+}
 
-   sceneEl.appendChild(nuevaFrase);
+function showPhrase(position, src, width, height, rotation, onComplete) {
+    const sceneEl = document.querySelector('a-scene');
+    const phrase = document.createElement('a-plane');
 
-   setTimeout(() => {
-      sceneEl.removeChild(nuevaFrase)
-   }, 5000);
+    phrase.setAttribute('id', 'frase');
+    phrase.setAttribute('position', position);
+    phrase.setAttribute('src', src);
+    phrase.setAttribute('material', "transparent:true");
+    phrase.setAttribute('depth', '0.1');
+    phrase.setAttribute('width', width);
+    phrase.setAttribute('height', height);
+    phrase.setAttribute('rotation', rotation ?? '0 0 0');
+    sceneEl.appendChild(phrase);
+
+    setTimeout(() => {
+        sceneEl.removeChild(phrase);
+        if (onComplete) onComplete();
+    }, PHRASE_DISPLAY_MS);
 }
 
 function finalScore() {
-   const puntuacion = document.querySelector('#score');
-   const puntuacion1 = document.querySelector('#score1');
+    document.querySelector("#AC").play();
 
-   puntuacion.setAttribute('visible', 'true');
-   puntuacion1.setAttribute('visible', 'true');
-   puntuacion1.setAttribute('text', 'value', contador);
-   let audio = document.querySelector("#AC");
-   audio.play();
+    const overlay = document.createElement('div');
+    overlay.id = 'score-overlay';
+    overlay.innerHTML = `
+        <h2>¡Felicidades!</h2>
+        <p class="label">Tu puntuación es:</p>
+        <p class="value">${score}</p>
+    `;
+    document.body.appendChild(overlay);
 
-   setTimeout(() => {
-      puntuacion.setAttribute('visible', 'false');
-      puntuacion1.setAttribute('visible', 'false');
-      puntuation();
-
-   }, 5000);
+    setTimeout(() => {
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+            overlay.remove();
+            showScoreScreen();
+        }, 500);
+    }, SCORE_DISPLAY_MS);
 }
 
+function showScoreScreen() {
+    document.exitPointerLock();
+    const sceneEl = document.querySelector('a-scene');
 
+    const wrapper = document.createElement('div');
+    wrapper.setAttribute('style', "background-color:transparent;width:100%;height:100%;align-items:center;display:flex;justify-content:center;");
 
-function puntuation() {
-   const sceneEl = document.querySelector('a-scene');
+    const container = document.createElement('div');
+    container.setAttribute('id', "menuContainer");
+    container.setAttribute('class', "menuContainer");
+    container.setAttribute('style', "width:100%;height:100%;align-items:center;display:flex;justify-content:center;border-radius:10%;z-index:1");
 
-   const nuevoBox = document.createElement('div');
-   nuevoBox.setAttribute('style', "background-color: transparent; width: 100%; height: 100%; align-items: center; display: flex; justify-content: center;")
+    const frame = document.createElement('iframe');
+    frame.setAttribute('src', `./pages/puntuacion.html?score=${score}&answered=${questionsAnswered}&correct=${correctAnswers}&newScore=true`);
+    frame.setAttribute('id', "iframe");
+    frame.setAttribute('width', "100%");
+    frame.setAttribute('height', "100%");
+    frame.setAttribute('scrolling', "no");
+    frame.setAttribute('frameborder', "0");
+    frame.setAttribute('marginheight', "0");
+    frame.setAttribute('marginwidth', "0");
 
-   const nuevoBox2 = document.createElement('div');
-   nuevoBox2.setAttribute('id', "menuContainer")
-   nuevoBox2.setAttribute('class', "menuContainer");
-   nuevoBox2.setAttribute('style', "width: 100%; height: 100%; align-items: center; display: flex; justify-content: center; border-radius: 10%;z-index:1");
-
-   const nuevoFrame = document.createElement('iframe')
-   nuevoFrame.setAttribute('src',`./puntuacion.html?score=${contador}&newScore=${true}`)
-   nuevoFrame.setAttribute('id', "iframe")
-   nuevoFrame.setAttribute('width', "100%")
-   nuevoFrame.setAttribute('height', "100%")
-   nuevoFrame.setAttribute('scrolling', "no")
-   nuevoFrame.setAttribute('frameborder', "0")
-   nuevoFrame.setAttribute('marginheight', "0")
-   nuevoFrame.setAttribute('marginwidth', "0") 
-
-
-
-   nuevoBox2.appendChild(nuevoFrame);
-   nuevoBox.appendChild(nuevoBox2);
-   sceneEl.appendChild(nuevoBox);
-
-   // var event = document.createEvent('KeyboardEvent');
-   // event.initKeyboardEvent('keydown', true, true, window, false, false, false, false, 20, 0);
-   // document.dispatchEvent(event);
-}  
+    container.appendChild(frame);
+    wrapper.appendChild(container);
+    sceneEl.appendChild(wrapper);
+}

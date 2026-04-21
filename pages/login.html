@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        form {
+            height: 520px;
+            width: 400px;
+            padding: 50px 35px;
+        }
+
+        label {
+            display: block;
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        button { margin-top: 50px; }
+
+        .social {
+            margin-top: 30px;
+            display: flex;
+            gap: 25px;
+        }
+
+        .social div {
+            width: 150px;
+            border-radius: 3px;
+            padding: 5px 10px 10px 5px;
+            background-color: var(--btn-secondary-bg);
+            color: #eaf0fb;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .social div:hover { background-color: var(--btn-secondary-hover); }
+    </style>
+</head>
+
+<body>
+    <form id="regForm">
+        <h3>Login Here</h3>
+
+        <label for="username">Nickname</label>
+        <input type="text" placeholder="PepitoMaster32" id="username">
+
+        <label for="password">Contraseña</label>
+        <input type="password" placeholder="Contraseña" id="password">
+
+        <button type="button">Log In</button>
+        <div class="social">
+            <div id="registryBtn">Registrar</div>
+            <div id="queryBtn">Consultar</div>
+        </div>
+    </form>
+</body>
+<script type="module" src="./login.js"></script>
+
+</html>
