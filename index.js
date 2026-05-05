@@ -2,7 +2,7 @@
 // so AFRAME.registerComponent runs synchronously before the scene initializes.
 const PHRASE_DISPLAY_MS = 5000;
 const SCORE_DISPLAY_MS = 5000;
-const TOTAL_QUESTIONS = 15;
+const TOTAL_QUESTIONS = 19;
 
 localStorage.clear();
 
@@ -31,13 +31,6 @@ window.addEventListener('load', () => {
         cancelAnimationFrame(animId);
         bar.style.width = '100%';
         pct.textContent = '100%';
-
-        // Pre-compile all shaders and upload textures to GPU now,
-        // while the loading screen is still visible, so the first camera
-        // turn doesn't stutter.
-        if (scene.renderer && scene.camera) {
-            scene.renderer.compile(scene.object3D, scene.camera);
-        }
 
         screen.style.opacity = '0';
         setTimeout(() => screen.remove(), 500);
@@ -130,6 +123,7 @@ function createOption(opc1, opc2, position, rotation, src, depth, wallId, respon
             ? onCorrect(opc1, opc2, wallId, sceneEl)
             : onWrong(opc1, opc2, wallId, sceneEl);
     };
+
     sceneEl.appendChild(box);
 }
 
