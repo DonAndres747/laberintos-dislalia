@@ -2,7 +2,7 @@
 // so AFRAME.registerComponent runs synchronously before the scene initializes.
 const PHRASE_DISPLAY_MS = 5000;
 const SCORE_DISPLAY_MS = 5000;
-const TOTAL_QUESTIONS = 19;
+const TOTAL_QUESTIONS = 25;
 
 localStorage.clear();
 
@@ -64,10 +64,12 @@ AFRAME.registerComponent('collider', {
             const rspType2 = triggerEl.getAttribute('rspTyp2');
             const widthW   = triggerEl.getAttribute('widthW');
             const heightW  = triggerEl.getAttribute('heightW');
+            const debugW   = triggerEl.getAttribute('debugW') === 'true';
+            const opacW    = triggerEl.getAttribute('opacW');
 
             createOption(opc1, opc2, pos1, rotation, src1, depth, wallId, rspType1);
             createOption(opc1, opc2, pos2, rotation, src2, depth, wallId, rspType2);
-            createWall(wallId, posW, rotW ?? rotation, depthW, widthW, heightW);
+            createWall(wallId, posW, rotW ?? rotation, depthW, widthW, heightW, debugW, opacW);
 
             document.querySelector("#" + audio).play();
             triggerEl.parentNode.removeChild(triggerEl);
@@ -127,12 +129,17 @@ function createOption(opc1, opc2, position, rotation, src, depth, wallId, respon
     sceneEl.appendChild(box);
 }
 
-function createWall(wallId, position, rotation, depth, width, height) {
+function createWall(wallId, position, rotation, depth, width, height, debug = false, opacity = null) {
     const sceneEl = document.querySelector('a-scene');
     const wall = document.createElement('a-box');
 
     wall.setAttribute('id', "muro" + wallId);
-    wall.setAttribute('visible', 'false');
+    if (opacity !== null) {
+        wall.setAttribute('visible', 'true');
+        wall.setAttribute('material', `transparent: true; opacity: ${opacity}`);
+    } else {
+        wall.setAttribute('visible', debug ? 'true' : 'false');
+    }
     wall.setAttribute('position', position);
     wall.setAttribute('rotation', rotation);
     wall.setAttribute('depth', depth ?? '0.1');

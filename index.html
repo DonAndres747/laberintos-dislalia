@@ -138,6 +138,12 @@
         <audio id="A17" src="Resourses/Sounds/Serrucho.mp4"></audio>
         <audio id="A18" src="Resourses/Sounds/Caldero.mp4"></audio>
         <audio id="A19" src="Resourses/Sounds/Pescado.mp4"></audio>
+        <audio id="A20" src="Resourses/Sounds/Coral-Dis.mp3"></audio>
+        <audio id="A21" src="Resourses/Sounds/Casa-Ig.mp3"></audio>
+        <audio id="A22" src="Resourses/Sounds/Foca-Dis.mp3"></audio>
+        <audio id="A23" src="Resourses/Sounds/Pala-Ig.mp3"></audio>
+        <audio id="A24" src="Resourses/Sounds/Pino-Dis.mp3"></audio>
+        <audio id="A25" src="Resourses/Sounds/Luna-Ig.mp3"></audio>
 
         <!--Models-->
         <a-entity gltf-model="#woody" scale="1.9 1.9 1.9" position="-3 0 -22"
@@ -432,6 +438,43 @@
             audio="A19" opc1="pescados" opc2="pesados" post1="6.5 1.5 -40.5" post2="8.5 1.5 -40.5" postW="7.5 1.5 -41"
             src1="Resourses/Environment/Pescados.png" src2="Resourses/Environment/Pesados.png" depth1="0.2" nMuro='18'
             rspTyp1='bien' rspTyp2='mal' widthW="4.5"></a-box>
+
+        <!-- NUEVO TIPO: jugador escucha 2 palabras y elige igual/distinto -->
+        <!-- Coral-Dis: respuesta correcta = distinto -->
+        <a-box id="trigger" static-body width="7" height="0.1" rotation="0 0 0" visible="false" position="-1.375 0 -5"
+            audio="A20" opc1="igual" opc2="distinto" post1="-2.5 1.5 -6.5" post2="-0.25 1.5 -6.5" postW="-1.375 1.5 -7.5"
+            src1="Resourses/Environment/Iguales.png" src2="Resourses/Environment/Distintas.png" depth1="0.2" nMuro='20'
+            rspTyp1='mal' rspTyp2='bien' widthW="7"></a-box>
+
+        <!-- Casa-Ig: respuesta correcta = igual -->
+        <a-box id="trigger" static-body width="4" height="0.1" rotation="0 0 0" visible="false" position="-24.57 0 -1.74"
+            audio="A21" opc1="igual" opc2="distinto" post1="-25.17 1.5 -2.5" post2="-23.97 1.5 -2.5" postW="-24.57 1.5 -4"
+            src1="Resourses/Environment/Iguales.png" src2="Resourses/Environment/Distintas.png" depth1="0.2" nMuro='21'
+            rspTyp1='bien' rspTyp2='mal' widthW="5"></a-box>
+
+        <!-- Foca-Dis: respuesta correcta = distinto -->
+        <a-box id="trigger" static-body width="4" height="0.1" depth='4' rotation="0 90 0" visible="false" position="-21 0 -29.46"
+            audio="A22" opc1="igual" opc2="distinto" post1="-21 1.5 -30.5" post2="-21 1.5 -28.5" postW="-21 1.5 -29.46" rt="0 90 0" rtW="0 90 0"
+            src1="Resourses/Environment/Iguales.png" src2="Resourses/Environment/Distintas.png" depth1="0.4" nMuro='22'
+            rspTyp1='mal' rspTyp2='bien' widthW="4"></a-box>
+
+        <!-- Pala-Ig: respuesta correcta = igual -->
+        <a-box id="trigger" static-body width="5" height="0.1" rotation="0 0 0" visible="false" position="-8 0 -47.5"
+            audio="A23" opc1="igual" opc2="distinto" post1="-9 1.5 -49" post2="-7 1.5 -49" postW="-7.75 1.5 -50"
+            src1="Resourses/Environment/Iguales.png" src2="Resourses/Environment/Distintas.png" depth1="0.2" nMuro='23'
+            rspTyp1='bien' rspTyp2='mal' widthW="5"></a-box>
+
+        <!-- Pino-Dis: respuesta correcta = distinto -->
+        <a-box id="trigger" static-body width="6" height="0.1" rotation="0 90 0" visible="false" position="0 0 -45.95"
+            audio="A24" opc1="igual" opc2="distinto" post1="4 1.5 -46.8" post2="4 1.5 -45.1" postW="-2 1.5 -45.95" rt="0 90 0" rtW="0 90 0"
+            src1="Resourses/Environment/Iguales.png" src2="Resourses/Environment/Distintas.png" depth1="0.2" nMuro='24'
+            rspTyp1='mal' rspTyp2='bien' widthW="9"></a-box>
+
+        <!-- Luna-Ig: respuesta correcta = igual -->
+        <a-box id="trigger" static-body width="5.5" height="0.1" rotation="0 0 0" visible="false" position="-17.48 0 -41.5"
+            audio="A25" opc1="igual" opc2="distinto" post1="-18.48 1.5 -41" post2="-16.48 1.5 -41" postW="-17.48 1.5 -40.3"
+            src1="Resourses/Environment/Iguales.png" src2="Resourses/Environment/Distintas.png" depth1="0.2" nMuro='25'
+            rspTyp1='bien' rspTyp2='mal' widthW="6"></a-box>
 
 
 
