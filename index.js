@@ -77,11 +77,37 @@ AFRAME.registerComponent('collider', {
     }
 });
 
+function shuffleQuestions() {
+    const triggers = Array.from(document.querySelectorAll('a-box[id="trigger"]'));
+    const contents = triggers.map(t => ({
+        audio:    t.getAttribute('audio'),
+        src1:     t.getAttribute('src1'),
+        src2:     t.getAttribute('src2'),
+        rspTyp1:  t.getAttribute('rspTyp1'),
+        rspTyp2:  t.getAttribute('rspTyp2'),
+    }));
+
+    for (let i = contents.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [contents[i], contents[j]] = [contents[j], contents[i]];
+    }
+
+    triggers.forEach((t, i) => {
+        t.setAttribute('audio',   contents[i].audio);
+        t.setAttribute('src1',    contents[i].src1);
+        t.setAttribute('src2',    contents[i].src2);
+        t.setAttribute('rspTyp1', contents[i].rspTyp1);
+        t.setAttribute('rspTyp2', contents[i].rspTyp2);
+    });
+}
+
 function empezar() {
     document.querySelector('#start-plane').removeAttribute('onclick');
+    shuffleQuestions();
     document.querySelector("#player").setAttribute("position", "0 0 -1");
     document.querySelector("#luz").setAttribute("light", "intensity: 1");
     document.querySelector("#hud-counter").setAttribute("visible", "true");
+    updateHud();
 }
 
 let score = 0;
